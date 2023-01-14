@@ -1,0 +1,25 @@
+{
+  
+"result": true,
+  
+"plugins_": {
+  
+"TagAll.lua":"[ملف تاك منفصل للاعضاء](https://t.me/QQOQQD)",
+  
+"Reply.lua":"[ملف الردود الخاص بالسورس](https://t.me/QQOQQD)",
+      
+"auto_lock.lua":"[ملف قفل الدردشه](https://t.me/QQOQQD)",
+  
+"BankBot.lua":"[ملف لعبه البنك](https://t.me/QQOQQD)",
+  
+"convert.lua":"[ملف تحويل الصيغ](https://t.me/QQOQQD)",
+    
+"GamesBot.lua":"[ملف الالعاب البوت](https://t.me/QQOQQD)",
+  
+"TsliaBot.lua":"[ملف التحشيش](https://t.me/QQOQQD)",
+  
+"AutoFile.lua":"[ملف النسخ الاحتياطيه التلقائيه](https://t.me/QQOQQD)",
+  
+}
+  
+}
