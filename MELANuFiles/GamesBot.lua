@@ -1,36 +1,454 @@
 function reply(msg)
 text = nil
 if msg and msg.content and msg.content.text then
-xname =  (Redis:get(noor.."Name:Bot") or "الفخم") 
+xname =  (Redis:get(TheMalak.."Name:Bot") or "الفخم") 
 text = msg.content.text.text
 if text:match("^"..xname.." (.*)$") then
 text = text:match("^"..xname.." (.*)$")
 end
 end
-if tonumber(msg.sender_id.user_id) == tonumber(noor) then
+if tonumber(msg.sender_id.user_id) == tonumber(TheMalak) then
 return false
 end
 msg_chat_id = msg.chat_id
 msg_id = msg.id
 if text then
-local neww = Redis:get(noor.."All:Get:Reides:Commands:Group"..text) or Redis:get(noor.."Get:Reides:Commands:Group"..msg_chat_id..":"..text)
+local neww = Redis:get(TheMalak.."All:Get:Reides:Commands:Group"..text) or Redis:get(TheMalak.."Get:Reides:Commands:Group"..msg_chat_id..":"..text)
 if neww then
 text = neww or text
 end
 end
 
 ----Barlo----
+if text == "بات" or text == "محيبس" then   
+if Redis:get(TheMalak.."Status:Games"..msg.chat_id) then 
+local reply_markup = bot.replyMarkup{
+type = 'inline',
+data = {
+{
+{text = '➀ » { 👊 }', data = '/Mahibes1'}, {text = '➁ » { 👊 }', data = '/Mahibes2'}, 
+},
+{
+{text = '➂ » { 👊 }', data = '/Mahibes3'}, {text = '➃ » { 👊 }', data = '/Mahibes4'}, 
+},
+{
+{text = '➄ » { 👊 }', data = '/Mahibes5'}, {text = '➅ » { 👊 }', data = '/Mahibes6'}, 
+},
+}
+}
+return send(msg_chat_id,msg_id, [[*
+✠┊لعبه المحيبس هي لعبة الحظ 
+✠┊جرب حظك ويه البوت واتونس 
+✠┊كل ما عليك هوا الضغط على اليد في الازرار
+*]],"md",false, false, false, false, reply_markup)
+end
+end
+if text == "خمن" or text == "تخمين" then   
 
+if Redis:get(TheMalak.."Status:Games"..msg.chat_id) then
+Num = math.random(1,20)
+Redis:set(TheMalak.."Game:Estimate"..msg.chat_id..msg.sender_id.user_id,Num)  
+return send(msg_chat_id,msg_id,"\n✠┊ اهلا بك عزيزي في لعبة التخمين :\nٴ━━━━━━━━━━\n".."✠┊ملاحظه لديك { 3 } محاولات فقط فكر قبل ارسال تخمينك \n\n".."✠┊سيتم تخمين عدد ما بين ال {1 و 20} اذا تعتقد انك تستطيع الفوز جرب واللعب الان ؟ ","md",true)  
+end
+end
+if text == 'اسئله' then   
+if Redis:get(TheMalak.."Status:Games"..msg.chat_id) then
+t1 = [[
+ماهو اطول نهر في العالم 
+1- النيل  
+2- الفرات 
+3- نهر الكونغو
+
+✠┊ارسل  الجواب الصحيح فقط
+]]
+t2 = [[
+ماعدد عظام الوجه؟
+1- 15
+2- 13
+3- 14 
+
+✠┊ارسل  الجواب الصحيح فقط
+]]
+t3 =[[
+كراسي بيضاء وجدران ورديه اذا اغلقته اصبح ظلام  فمن اكون؟
+
+1- الفم 
+2- الاذن
+3- الثلاجه
+
+✠┊ارسل  الجواب الصحيح فقط
+]]
+t4 =[[
+كم جزء تحتوي مسلسل وادي الذئاب؟
+
+1- 7
+2- 15
+3- 11
+
+✠┊ارسل  الجواب الصحيح فقط
+]]
+t5 =[[
+كم جزء يحتوي القران الكريم؟
+
+1- 60
+2- 70
+3- 30 
+
+✠┊ارسل  الجواب الصحيح فقط
+]]
+t6 =[[
+من هوه اغنى رئيس في العالم؟
+
+1- ترامب
+2- اوباما
+3- بوتين  
+
+✠┊ارسل  الجواب الصحيح فقط
+]]
+
+t7 =[[
+من هوه مؤسس شركه ابل العالميه 
+
+1-لاري بايج 
+2- بيا غايتز
+3- ستيف جوبر
+
+✠┊ارسل  الجواب الصحيح فقط
+]]
+t8 =[[
+ماهي عاصمه فرنسا؟
+
+1- باريس 
+2- لوين 
+3- موسكو 
+
+✠┊ارسل  الجواب الصحيح فقط
+]]
+t9 =[[
+ماعدد دول العربيه التي توجد في افريقيا 
+
+1- 10 
+2- 17
+3- 9
+
+✠┊ارسل  الجواب الصحيح فقط
+]]
+t11 =[[
+ماهو الحيوان الذي يحمل 50 فوق وزنه؟
+1-الفيل
+2- النمل  
+3- الثور
+
+✠┊ارسل  الجواب الصحيح فقط
+]]
+t12 =[[
+ماذا يوجد بيني وبينك؟  
+1- الضل
+2- الاخلاق
+3-حرف الواو  
+
+✠┊ارسل  الجواب الصحيح فقط
+]]
+t13 =[[
+ماهو الشيء النبات ينبت للانسان بلا بذر؟
+1-الاضافر 
+2- الاسنان
+3- الشعر
+
+✠┊ارسل  الجواب الصحيح فقط
+]]
+t14 =[[
+م̷ـــِْن هو اول الرسول الى الارض؟
+1- ادم
+2- نوح
+3-ابراهيم 
+
+✠┊ارسل  الجواب الصحيح فقط
+]]
+t15 =[[
+ما هو الشّيء الذي يستطيع المشي بدون أرجل والبكاء بدون أعين؟
+1- سحاب
+2- بئر
+3- نهر
+
+✠┊ارسل  الجواب الصحيح فقط
+]]
+t16 =[[
+ما الشيء الذي نمتلكه , لكنّ غيرنا يستعمله أكثر منّا؟
+1- العمر
+2- ساعه
+3- الاسم
+
+✠┊ارسل  الجواب الصحيح فقط
+]]
+t17 =[[
+اصفر اللون سارق عقول اهل الكون وحارمهم لذيذ النوم
+1- نحاس
+2- الليدر
+3- ذهب
+
+✠┊ارسل  الجواب الصحيح فقط
+]]
+t18 =[[
+في الليل ثلاثة لكنه في النهار واحده فما هو
+ 1- حرف الباء
+ 2- حرف الام 
+3- حرف الراء
+
+✠┊ارسل  الجواب الصحيح فقط
+]]
+t19 =[[
+على قدر اصل العزم تأتي؟
+1- العزائم 
+2- المكارم
+3- المبائب
+
+✠┊ارسل  الجواب الصحيح فقط
+]]
+
+t20 =[[
+ماهي جمع كلمه انسه ؟
+1- سيدات
+2- انسات 
+3- قوانص
+
+✠┊ارسل  الجواب الصحيح فقط
+]]
+t21 =[[
+اله اتسعلمت قديما في الحروب؟
+1- الصاروخ
+2- المسدس
+3- المنجنيق 
+
+✠┊ارسل  الجواب الصحيح فقط
+]]
+t22 =[[
+تقع لبنان في قاره؟
+1- افريقيا 
+2- اسيا  
+3- امركيا الشماليه
+
+✠┊ارسل  الجواب الصحيح فقط
+]]
+
+t23 =[[
+1- ماهو الحيوان الذي يلقب بملك الغابه؟
+1-الفيل
+2- الاسد 
+3- النمر
+
+✠┊ارسل  الجواب الصحيح فقط
+]]
+t24 =[[
+كم صفرا للمليون ؟
+1- 4 
+2- 3
+3-6
+
+✠┊ارسل  الجواب الصحيح فقط
+]]
+t25 =[[
+ما اسم صغير الحصان؟
+1- مهر  
+2- جرو
+3- عجل
+
+✠┊ارسل  الجواب الصحيح فقط
+]]
+t26 =[[
+ما الحيوان الذي ينام واحدى عينه مفتوحه؟
+
+1- القرش
+2- الدلفين 
+3- الثعلب
+
+✠┊ارسل  الجواب الصحيح فقط
+]]
+t27 =[[
+ماهي القاره التي تلقب بالقاره العجوز؟
+
+1- امريكا الشماليه 
+2- امريكا الجنوبيه
+3- افريقيا 
+
+✠┊ارسل  الجواب الصحيح فقط
+]]
+t28 =[[
+ما اسم المعدن الموجود فيي الحاله السائله 
+
+1- النحاس 
+2- الحديد
+3- الزئبق 
+ 
+✠┊ارسل  الجواب الصحيح فقط
+]]
+t29 =[[
+ماهي عاصمه انجلترا؟
+1- لندن  
+2- لفرسول
+3- تركيا
+
+✠┊ارسل  الجواب الصحيح فقط
+]]
+t30 =[[
+ماهو الشئ الذي برأسه سبع فتحات
+
+1- الهاتف
+2- التلفاز
+3- الانسان 
+
+✠┊ارسل  الجواب الصحيح فقط
+]]
+t31 =[[
+ماهي عاصمه اليابان ؟
+1- بانقول
+2- نيو دلهي
+3- طوكيو 
+
+✠┊ارسل  الجواب الصحيح فقط
+]]
+t32 =[[
+من هي زوجه الرسول الاكبر منه سنآ؟
+
+1- حفضه
+2- زينب 
+3- خديجه 
+
+✠┊ارسل  الجواب الصحيح فقط
+]]
+TAHA = {t16,t17,t18,t19,t20,t21,t22,t23,t24,t25,t26,t27,t28,t29,t30,t31,t32,t1,t2,t3,t4,t5,t6,t7,t8,t9,t11,t12,t13,t14,t15}
+local SENDTEXT = TAHA[math.random(#TAHA)]
+if SENDTEXT:find('النيل') then
+Redis:set(TheMalak.."GAME:CHER"..msg.chat_id,'النيل') 
+elseif SENDTEXT:find('14') then
+Redis:set(TheMalak.."GAME:CHER"..msg.chat_id,'14') 
+elseif SENDTEXT:find('الفم') then
+Redis:set(TheMalak.."GAME:CHER"..msg.chat_id,'الفم') 
+elseif SENDTEXT:find('11') then
+Redis:set(TheMalak.."GAME:CHER"..msg.chat_id,'11') 
+elseif SENDTEXT:find('30') then
+Redis:set(TheMalak.."GAME:CHER"..msg.chat_id,'30') 
+elseif SENDTEXT:find('بوتين') then
+Redis:set(TheMalak.."GAME:CHER"..msg.chat_id,'بوتين') 
+elseif SENDTEXT:find('ستيف جوبر') then
+Redis:set(TheMalak.."GAME:CHER"..msg.chat_id,'ستيف جوبر') 
+elseif SENDTEXT:find('باريس') then
+Redis:set(TheMalak.."GAME:CHER"..msg.chat_id,'باريس') 
+elseif SENDTEXT:find('10') then
+Redis:set(TheMalak.."GAME:CHER"..msg.chat_id,'10') 
+elseif SENDTEXT:find('النمل') then
+Redis:set(TheMalak.."GAME:CHER"..msg.chat_id,'النمل') 
+elseif SENDTEXT:find('حرف الواو') then
+Redis:set(TheMalak.."GAME:CHER"..msg.chat_id,'حرف الواو') 
+elseif SENDTEXT:find('الشعر') then
+Redis:set(TheMalak.."GAME:CHER"..msg.chat_id,'الشعر') 
+elseif SENDTEXT:find('ابراهيم') then
+Redis:set(TheMalak.."GAME:CHER"..msg.chat_id,'ابراهيم') 
+elseif SENDTEXT:find('سحاب') then
+Redis:set(TheMalak.."GAME:CHER"..msg.chat_id,'سحاب') 
+elseif SENDTEXT:find('الاسم') then
+Redis:set(TheMalak.."GAME:CHER"..msg.chat_id,'الاسم') 
+elseif SENDTEXT:find('ذهب') then
+Redis:set(TheMalak.."GAME:CHER"..msg.chat_id,'ذهب') 
+elseif SENDTEXT:find('حرف الام') then
+Redis:set(TheMalak.."GAME:CHER"..msg.chat_id,'حرف الام') 
+elseif SENDTEXT:find('العزائم') then
+Redis:set(TheMalak.."GAME:CHER"..msg.chat_id,'العزائم') 
+elseif SENDTEXT:find('انسات') then
+Redis:set(TheMalak.."GAME:CHER"..msg.chat_id,'انسات') 
+elseif SENDTEXT:find('المنجنيق') then
+Redis:set(TheMalak.."GAME:CHER"..msg.chat_id,'المنجنيق') 
+elseif SENDTEXT:find('اسيا') then
+Redis:set(TheMalak.."GAME:CHER"..msg.chat_id,'اسيا') 
+elseif SENDTEXT:find('الاسد') then
+Redis:set(TheMalak.."GAME:CHER"..msg.chat_id,'الاسد') 
+elseif SENDTEXT:find('6') then
+Redis:set(TheMalak.."GAME:CHER"..msg.chat_id,'6') 
+elseif SENDTEXT:find('مهر') then
+Redis:set(TheMalak.."GAME:CHER"..msg.chat_id,'مهر') 
+elseif SENDTEXT:find('الدلفين') then
+Redis:set(TheMalak.."GAME:CHER"..msg.chat_id,'الدلفين') 
+elseif SENDTEXT:find('اوروبا') then
+Redis:set(TheMalak.."GAME:CHER"..msg.chat_id,'اوروبا') 
+elseif SENDTEXT:find('الزئبق') then
+Redis:set(TheMalak.."GAME:CHER"..msg.chat_id,'الزئبق') 
+elseif SENDTEXT:find('لندن') then
+Redis:set(TheMalak.."GAME:CHER"..msg.chat_id,'لندن') 
+elseif SENDTEXT:find('الانسان') then
+Redis:set(TheMalak.."GAME:CHER"..msg.chat_id,'الانسان') 
+elseif SENDTEXT:find('طوكيو') then
+Redis:set(TheMalak.."GAME:CHER"..msg.chat_id,'طوكيو') 
+elseif SENDTEXT:find('خديجه') then
+Redis:set(TheMalak.."GAME:CHER"..msg.chat_id,'خديجه') 
+end
+send(msg.chat_id,msg.id,SENDTEXT)     
+return false  
+end
+end
+if Redis:get(TheMalak.."GAME:CHER"..msg.chat_id) and (text == Redis:get(TheMalak.."GAME:CHER"..msg.chat_id)) then  
+if text then
+send(msg.chat_id,msg.id,'*✠┊احسنت اجابتك صحيحه ✓*',"md")     
+Redis:incrby(TheMalak.."Num:Add:Games"..msg.chat_id..msg.sender_id.user_id, 1)  
+Redis:del(TheMalak.."GAME:CHER"..msg.chat_id)
+elseif text == 'الفيل' or text == 'الثور' or text == 'الحصان' or text == '7' or text == '9' or text == '8' or text == 'لوين' or text == 'موسكو' or text == 'مانكو' or text == '20' or text == '30' or text == '28' or text == 'ترامب' or text == 'اوباما' or text == 'كيم جونغ' or text == '50' or text == '70' or text == '40' or text == '7' or text == '3' or text == '10' or text == '4' or text == 'الاذن' or text == 'الثلاجه' or text == 'الغرفه' or text == '15' or text == '17' or text == '25' or text == 'الفرات' or text == 'نهر الكونغو' or text == 'المسيبي' or text == 'بيا بايج' or text == 'لاري بيج' or text == 'بيا مارك زوكيربرج' or text == 'الفيل' or text == 'النمر' or text == 'الفهد' or text == 'بانقول' or text == 'نيو دلهي' or text == 'بيكن' or text == 'الهاتف' or text == 'التلفاز' or text == 'المذياع' or text == 'لفرسول' or text == 'تركيا' or text == 'بغداد' or text == 'النحاس' or text == 'الحديد' or text == 'الفضه' or text == 'امريكا الشماليه' or text == 'امريكا الجنوبيه' or text == 'افريقيا' or text == 'القرش' or text == 'الثعلب' or text == 'الكلب' or text == 'للجرو' or text == 'العجل' or text == 'الحمار' or text == '3' or text == '5' or text == '6' or text == 'اوربا' or text == 'افريقيا' or text == 'امريكا الجنوبيه' or text == 'افريقيا' or text == 'امريكا الشماليه' or text == 'اوربا' or text == 'الصاروخ' or text == 'المسدس' or text == 'الطائرات' or text == 'سيدات' or text == 'قوانص' or text == 'عوانس' or text == 'المكارم' or text == 'المبائم' or text == 'المعازم' or text == 'حرف الغاء' or text == 'حرف الواو' or text == 'حرف النون' or text == 'نحاس' or text == 'الليدر' or text == 'حديد' or text == 'العمر' or text == 'ساعه' or text == 'الحذاء' or text == 'بئر' or text == 'نهر' or text == 'شلال' or text == 'ادم' or text == 'نوح' or text == 'عيسئ' or text == 'الاضافر' or text == 'الاسنان' or text == 'الدموع' or text == 'الاخلاق' or text == 'الضل' or text == 'حرف النون'  then
+local list = {'10' , 'براسي' , 'النمل' , '32' , 'بوتين' , '30' , '11' , 'الفم' , '14' , 'النيل' , 'ستيف جوبر' , 'خديجه' , 'الاسد' , 'طوكيو' , 'الانسان' , 'لندن' , 'الزئبق' , 'اورباالدولفين' , 'المهر' , '4' , 'اسيا' , 'اسيا' , 'المنجنيق' , 'انسات' , 'العزائم' , 'حرف الام' , 'ذهب' , 'الاسم' , 'سحاب' , 'ابراهيم' , 'الشعر' , 'حرف الواو'}
+for k, v in pairs(list) do 
+if text ~= v then
+Redis:del(TheMalak.."GAME:CHER"..msg.chat_id)
+send(msg.chat_id,msg.id,'✠┊اجابتك خاطئه للاسف ,')     
+return false  
+end
+end
+end
+end
+if text == 'رياضيات' then
+if Redis:get(TheMalak.."Status:Games"..msg.chat_id) then
+xxx = {'9','46','2','9','5','4','25','10','17','15','39','5','16',};
+name = xxx[math.random(#xxx)]
+print(name)
+Redis:set(TheMalak..'bot:bkbk6'..msg.chat_id,name)
+name = string.gsub(name,'9','7 + 2 = ?') name = string.gsub(name,'46','41 + 5 = ?')
+name = string.gsub(name,'2','5 - 3 = ?') name = string.gsub(name,'9','5 + 2 + 2 = ?')
+name = string.gsub(name,'5','8 - 3 = ?') name = string.gsub(name,'4','40 ÷ 10 = ?')
+name = string.gsub(name,'25','30 - 5 = ?') name = string.gsub(name,'10','100 ÷ 10 = ?')
+name = string.gsub(name,'17','10 + 5 + 2 = ?') name = string.gsub(name,'15','25 - 10 = ?')
+name = string.gsub(name,'39','44 - 5 = ?') name = string.gsub(name,'5','12 + 1 - 8 = ?') name = string.gsub(name,'16','16 + 16 - 16 = ?')
+send(msg_chat_id,msg_id,'✠┊اكمل المعادله ،\n - {'..name..'} .')     
+end 
+end
+if text == 'انكليزي' then
+if Redis:get(TheMalak.."Status:Games"..msg.chat_id) then
+yyy = {'معلومات','قنوات','مجموعات','كتاب','تفاحه','سدني','نقود','اعلم','ذئب','تمساح','ذكي','شاطئ','غبي',};
+name = yyy[math.random(#yyy)]
+Redis:set(TheMalak..'bot:bkbk7'..msg.chat_id,name)
+name = string.gsub(name,'ذئب','Wolf') name = string.gsub(name,'معلومات','Information')
+name = string.gsub(name,'قنوات','Channels') name = string.gsub(name,'مجموعات','Groups')
+name = string.gsub(name,'كتاب','Book') name = string.gsub(name,'تفاحه','Apple')
+name = string.gsub(name,'نقود','money') name = string.gsub(name,'اعلم','I know')
+name = string.gsub(name,'تمساح','crocodile') name = string.gsub(name,'شاطئ','Beach')
+name = string.gsub(name,'غبي','Stupid') name = string.gsub(name,'صداقه','Friendchip')
+name = string.gsub(name,'ذكي','Smart') 
+send(msg_chat_id,msg_id,' ✠┊ما معنى كلمه {'..name..'} ، ')     
+end
+end
+if text == 'روليت' then
+if Redis:get(TheMalak.."Status:Games"..msg.chat_id) then
+Redis:del(TheMalak..":Number_Add:"..msg.chat_id..msg.sender_id.user_id) 
+Redis:del(TheMalak..':List_Rolet:'..msg.chat_id)  
+Redis:setex(TheMalak..":Start_Rolet:"..msg.chat_id..msg.sender_id.user_id,3600,true)  
+return send(msg_chat_id,msg_id, '*✠┊* حسننا لنلعب , ارسل عدد اللاعبين للروليت .',"md")
+end
+end
 if text == "سمايلات" or text == "سمايل" then
-if Redis:get(noor.."Status:Games"..msg.chat_id) then
+if Redis:get(TheMalak.."Status:Games"..msg.chat_id) then
 Random = {"🍏","🍎","🍐","🍊","🍋","??","🍇","🍓","🍈","🍒","🍑","🍍","🥥","??","🍅","🍆","●","🥦","🥒","🌶","🌽","🥕","🥔","🥖","🥐","🍞","🥨","??","🧀","🥚","🍳","🥓","??","🍗","??","🌭","🍔","🍠","??","🥪","🥙","☕️","🥤","🍶","🍺","🍻","🏀","⚽️","🏈","⚾️","🎾","🏐","🏉","🎱","🏓","🏸","🥅","🎰","🎮","🎳","🎯","🎲","🎻","🎸","🎺","🥁","🎹","🎼","🎧","🎤","🎬","🎨","🎭","🎪","🎟","🎫","🎗","🏵","🎖","🏆","🥌","🛷","🚗","🚌","🏎","🚓","🚑","🚚","🚛","🚜","⚔","🛡","🔮","🌡","💣","● ","📍","📓","📗","📂","📅","📪","📫","● ","📭","⏰","📺","🎚","☎️","📡"}
 SM = Random[math.random(#Random)]
-Redis:set(noor.."Game:Smile"..msg.chat_id,SM)
-return LuaTele.sendText(msg_chat_id,msg_id,"● اسرع واحد يدز هاذا السمايل ? ~ {`"..SM.."`}","md",true)  
+Redis:set(TheMalak.."Game:Smile"..msg.chat_id,SM)
+return send(msg_chat_id,msg_id,"● اسرع واحد يدز هاذا السمايل ? ~ {`"..SM.."`}","md",true)  
 end
 end
 if text == "صراحه" or text == "الصراحه" or text == "صارحني" then 
-if Redis:get(noor.."Status:Games"..msg.chat_id) then
+if Redis:get(TheMalak.."Status:Games"..msg.chat_id) then
 local vBandav_Msg = { 
 "صراحه  ›  صوتك حلوة؟",
 "صراحه  ›  التقيت الناس مع وجوهين؟",
@@ -92,11 +510,11 @@ local vBandav_Msg = {
 "‏صراحه  ›  ما اكثر شي ندمن عليه؟",
 "صراحه  ›  ما هي أمنياتك المُستقبلية؟‏",
 } 
-LuaTele.sendText(msg_chat_id,msg_id,vBandav_Msg[math.random(#vBandav_Msg)],'md')
+send(msg_chat_id,msg_id,vBandav_Msg[math.random(#vBandav_Msg)],'md')
 end
 end
 if text == "كت" or text == "تويت" or text == "الفخم تويت" then
-if Redis:get(noor.."Status:Games"..msg.chat_id) then
+if Redis:get(TheMalak.."Status:Games"..msg.chat_id) then
 local texting = {"اخر افلام شاهدتها", 
 "مرتبط؟ ", 
 " هل بتكراش ع حد في حياتك؟", 
@@ -462,12 +880,12 @@ local texting = {"اخر افلام شاهدتها",
   "عادي تتزوج من برا القبيلة؟ ",
   "أجمل شي بحياتك وش هو؟ ",
 } 
-local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'تويت آخرا -', data = msg.sender_id.user_id..'/Haiw7'}, },}}
-return LuaTele.sendText(msg_chat_id,msg_id, texting[math.random(#texting)],'md', false, false, false, false, reply_markup)
+local reply_markup = bot.replyMarkup{type = 'inline',data = {{{text = 'تويت آخرا -', data = msg.sender_id.user_id..'/Haiw7'}, },}}
+return send(msg_chat_id,msg_id, texting[math.random(#texting)],'md', false, false, false, false, reply_markup)
 end
 end
 if text == "كتبات" or text == "حكمه" or text == "قصيده" then 
-if Redis:get(noor.."Status:Games"..msg.chat_id) then
+if Redis:get(TheMalak.."Status:Games"..msg.chat_id) then
 local vBandav_Msg = { 
 "‏من ترك أمرهُ لله، أعطاه الله فوق ما يتمنَّاه💙 ", 
 "‏من علامات جمال المرأة .. بختها المايل ! ",
@@ -526,11 +944,11 @@ local vBandav_Msg = {
 "فى احتمال كبير انها ليلة القدر ادعوا لنفسكم كتير وأدعو ربنا يشفى كل مريض. 💙 ",
 "أنِر ظُلمتي، وامحُ خطيئتي، واقبل توبتي وأعتِق رقبتي يا اللّٰه. إنكَ عفوٌّ تُحِبُّ العفوَ؛ فاعفُ عني 💛 ", 
 } 
-return LuaTele.sendText(msg_chat_id,msg_id,vBandav_Msg[math.random(#vBandav_Msg)],'md')
+return send(msg_chat_id,msg_id,vBandav_Msg[math.random(#vBandav_Msg)],'md')
 end
 end
 if text == "انصحني" or text == "انصحنى" or text == "انصح" then 
-if Redis:get(noor.."Status:Games"..msg.chat_id) then
+if Redis:get(TheMalak.."Status:Games"..msg.chat_id) then
 local vBandav_Msg = { 
 "عامل الناس بأخلاقك ولا بأخلاقهم", 
 "الجمال يلفت الأنظار لكن الطيبه تلفت القلوب ", 
@@ -593,11 +1011,11 @@ local vBandav_Msg = {
 " انصح نفسك بنفسك بمت😆",
 " كنت نصحت نفسي ياخويا??", 
 } 
-return LuaTele.sendText(msg_chat_id,msg_id,vBandav_Msg[math.random(#vBandav_Msg)],'md')
+return send(msg_chat_id,msg_id,vBandav_Msg[math.random(#vBandav_Msg)],'md')
 end
 end
 if text == "نكته" or text == "قولي نكته" or text == "عايز اضحك" then
-if Redis:get(noor.."Status:Games"..msg.chat_id) then
+if Redis:get(TheMalak.."Status:Games"..msg.chat_id) then
 local vBandav_Msg = { 
 " مرة واحد مصري دخل سوبر ماركت في الكويت عشان يشتري ولاعة..    راح عشان يحاسب بيقوله الولاعة ديه بكام؟   قاله دينار..  قاله منا عارف ان هي نار بس بكام ●😂", 
 "بنت حبت تشتغل مع رئيس عصابة..   شغلها في غسيل الأموال ●😂 ", 
@@ -614,11 +1032,11 @@ local vBandav_Msg = {
 "مره واحد شاط كرة فى المقص..   اتخرمت. 🤓😂",
 "مرة واحد رايح لواحد صاحبه.. فا البواب وقفه بيقول له انت طالع لمين.. قاله طالع أسمر شوية لبابايا.. قاله يا أستاذ طالع لمين في العماره 🤓😂",
 } 
-return LuaTele.sendText(msg_chat_id,msg_id,vBandav_Msg[math.random(#vBandav_Msg)],'md')
+return send(msg_chat_id,msg_id,vBandav_Msg[math.random(#vBandav_Msg)],'md')
 end
 end
 if text == "خيرني" or text == "لو خيروك" or text == "خيروك" then 
-if Redis:get(noor.."Status:Games"..msg.chat_id) then
+if Redis:get(TheMalak.."Status:Games"..msg.chat_id) then
 local vBandav_Msg = { 
 "لو خيروك ›  بين الإبحار لمدة أسبوع كامل أو السفر على متن طائرة لـ 3 أيام متواصلة؟ ",
 "لو خيروك ›  بين شراء منزل صغير أو استئجار فيلا كبيرة بمبلغ معقول؟ ",
@@ -717,11 +1135,11 @@ local vBandav_Msg = {
 "لو خيروك ›  بين تناول الشوكولا التي تحبين طوال حياتك ولكن لا يمكنك الاستماع إلى الموسيقى وبين الاستماع إلى الموسيقى ولكن لا يمكن لك تناول الشوكولا أبدًا؟ ",
 "لو خيروك ›  بين مشاركة المنزل مع عائلة من الفئران أو عائلة من الأشخاص المزعجين الفضوليين الذين يتدخلون في كل كبيرة وصغيرة؟ ",
 } 
-return LuaTele.sendText(msg_chat_id,msg_id,vBandav_Msg[math.random(#vBandav_Msg)],'md')
+return send(msg_chat_id,msg_id,vBandav_Msg[math.random(#vBandav_Msg)],'md')
 end
 end
 if text == "حروف" or text == "حرف" or text == "الحروف" then 
-if Redis:get(noor.."Status:Games"..msg.chat_id) then
+if Redis:get(TheMalak.."Status:Games"..msg.chat_id) then
 local vBandav_Msg = { 
 " جماد بحرف ⋙ ر ", 
 " مدينة بحرف ⋙ ع ",
@@ -774,15 +1192,15 @@ local vBandav_Msg = {
 "مدينة بحرف ⋙ ع ",
 "دولة واسم بحرف ⋙ ب ",
 } 
-return LuaTele.sendText(msg_chat_id,msg_id,vBandav_Msg[math.random(#vBandav_Msg)],'md')
+return send(msg_chat_id,msg_id,vBandav_Msg[math.random(#vBandav_Msg)],'md')
 end
 end
 if text == "اعلام" or text == "اعلام ودول" or text == "اعلام و دول" or text == "دول" then
-if Redis:get(noor.."Status:Games"..msg.chat_id) then
-Redis:del(noor.."Set:Country"..msg.chat_id)
+if Redis:get(TheMalak.."Status:Games"..msg.chat_id) then
+Redis:del(TheMalak.."Set:Country"..msg.chat_id)
 Country_Rand = {"مصر","العراق","السعوديه","المانيا","تونس","الجزائر","فلسطين","اليمن","المغرب","البحرين","فرنسا","سويسرا","تركيا","انجلترا","الولايات المتحده","كندا","الكويت","ليبيا","السودان","سوريا"}
 name = Country_Rand[math.random(#Country_Rand)]
-Redis:set(noor.."Game:Countrygof"..msg.chat_id,name)
+Redis:set(TheMalak.."Game:Countrygof"..msg.chat_id,name)
 name = string.gsub(name,"مصر","🇪🇬")
 name = string.gsub(name,"العراق","🇮🇶")
 name = string.gsub(name,"السعوديه","🇸🇦")
@@ -803,14 +1221,14 @@ name = string.gsub(name,"الكويت","🇰🇼")
 name = string.gsub(name,"ليبيا","🇱🇾")
 name = string.gsub(name,"السودان","🇸🇩")
 name = string.gsub(name,"سوريا","🇸🇾")
-return LuaTele.sendText(msg_chat_id,msg_id,"● اسرع واحد يرسل اسم الدولة ~ {"..name.."}","md",true)  
+return send(msg_chat_id,msg_id,"● اسرع واحد يرسل اسم الدولة ~ {"..name.."}","md",true)  
 end
 end
 if text == "الاسرع" or tect == "ترتيب" then
-if Redis:get(noor.."Status:Games"..msg.chat_id) then
+if Redis:get(TheMalak.."Status:Games"..msg.chat_id) then
 KlamSpeed = {"سحور","سياره","استقبال","قنفه","ايفون","بزونه","مطبخ","كرستيانو","دجاجه","مدرسه","الوان","غرفه","ثلاجه","كهوه","سفينه","العراق","محطه","طياره","رادار","منزل","مستشفى","كهرباء","تفاحه","اخطبوط","سلمون","فرنسا","برتقاله","تفاح","مطرقه","بتيته","لهانه","شباك","باص","سمكه","ذباب","تلفاز","حاسوب","انترنيت","ساحه","جسر"};
 name = KlamSpeed[math.random(#KlamSpeed)]
-Redis:set(noor.."Game:Monotonous"..msg.chat_id,name)
+Redis:set(TheMalak.."Game:Monotonous"..msg.chat_id,name)
 name = string.gsub(name,"سحور","س ر و ح")
 name = string.gsub(name,"سياره","ه ر س ي ا")
 name = string.gsub(name,"استقبال","ل ب ا ت ق س ا")
@@ -851,14 +1269,14 @@ name = string.gsub(name,"حاسوب","س ا ح و ب")
 name = string.gsub(name,"انترنيت","ا ت ن ر ن ي ت")
 name = string.gsub(name,"ساحه","ح ا ه س")
 name = string.gsub(name,"جسر","ر ج س")
-return LuaTele.sendText(msg_chat_id,msg_id,"● اسرع واحد يرتبها ~ {"..name.."}","md",true)  
+return send(msg_chat_id,msg_id,"● اسرع واحد يرتبها ~ {"..name.."}","md",true)  
 end
 end
 if text == "حزوره" then
-if Redis:get(noor.."Status:Games"..msg.chat_id) then
+if Redis:get(TheMalak.."Status:Games"..msg.chat_id) then
 Hzora = {"الجرس","عقرب الساعه","السمك","المطر","5","الكتاب","البسمار","7","الكعبه","بيت الشعر","لهانه","انا","امي","الابره","الساعه","22","غلط","كم الساعه","البيتنجان","البيض","المرايه","الضوء","الهواء","الضل","العمر","القلم","المشط","الحفره","البحر","الثلج","الاسفنج","الصوت","بلم"};
 name = Hzora[math.random(#Hzora)]
-Redis:set(noor.."Game:Riddles"..msg.chat_id,name)
+Redis:set(TheMalak.."Game:Riddles"..msg.chat_id,name)
 name = string.gsub(name,"الجرس","شيئ اذا لمسته صرخ ما هوه ؟")
 name = string.gsub(name,"عقرب الساعه","اخوان لا يستطيعان تمضيه اكثر من دقيقه معا فما هما ؟")
 name = string.gsub(name,"السمك","ما هو الحيوان الذي لم يصعد الى سفينة نوح عليه السلام ؟")
@@ -892,15 +1310,15 @@ name = string.gsub(name,"الثلج","انا ابن الماء فان تركون
 name = string.gsub(name,"الاسفنج","كلي ثقوب ومع ذالك احفض الماء فمن اكون ؟")
 name = string.gsub(name,"الصوت","اسير بلا رجلين ولا ادخل الا بالاذنين فمن انا ؟")
 name = string.gsub(name,"بلم","حامل ومحمول نصف ناشف ونصف مبلول فمن اكون ؟ ")
-return LuaTele.sendText(msg_chat_id,msg_id,"● اسرع واحد يحل الحزوره ↓\n {"..name.."}","md",true)  
+return send(msg_chat_id,msg_id,"● اسرع واحد يحل الحزوره ↓\n {"..name.."}","md",true)  
 end
 end
 if text == "معاني" then
-if Redis:get(noor.."Status:Games"..msg.chat_id) then
-Redis:del(noor.."Set:Maany"..msg.chat_id)
+if Redis:get(TheMalak.."Status:Games"..msg.chat_id) then
+Redis:del(TheMalak.."Set:Maany"..msg.chat_id)
 Maany_Rand = {"قرد","دجاجه","بطريق","ضفدع","بومه","نحله","ديك","جمل","بقره","دولفين","تمساح","قرش","نمر","اخطبوط","سمكه","خفاش","اسد","فأر","ذئب","فراشه","عقرب","زرافه","قنفذ","تفاحه","باذنجان"}
 name = Maany_Rand[math.random(#Maany_Rand)]
-Redis:set(noor.."Game:Meaningof"..msg.chat_id,name)
+Redis:set(TheMalak.."Game:Meaningof"..msg.chat_id,name)
 name = string.gsub(name,"قرد","🐒")
 name = string.gsub(name,"دجاجه","🐔")
 name = string.gsub(name,"بطريق","🐧")
@@ -926,15 +1344,15 @@ name = string.gsub(name,"زرافه","🦒")
 name = string.gsub(name,"قنفذ","🦔")
 name = string.gsub(name,"تفاحه","🍎")
 name = string.gsub(name,"باذنجان","🍆")
-return LuaTele.sendText(msg_chat_id,msg_id,"● اسرع واحد يدز معنى السمايل ~ {"..name.."}","md",true)  
+return send(msg_chat_id,msg_id,"● اسرع واحد يدز معنى السمايل ~ {"..name.."}","md",true)  
 end
 end
 if text == "العكس" then
-if Redis:get(noor.."Status:Games"..msg.chat_id) then
-Redis:del(noor.."Set:Aks"..msg.chat_id)
+if Redis:get(TheMalak.."Status:Games"..msg.chat_id) then
+Redis:del(TheMalak.."Set:Aks"..msg.chat_id)
 katu = {"باي","فهمت","موزين","اسمعك","احبك","موحلو","نضيف","حاره","ناصي","جوه","سريع","ونسه","طويل","سمين","ضعيف","شريف","شجاع","رحت","عدل","نشيط","شبعان","موعطشان","خوش ولد","اني","هادئ"}
 name = katu[math.random(#katu)]
-Redis:set(noor.."Game:Reflection"..msg.chat_id,name)
+Redis:set(TheMalak.."Game:Reflection"..msg.chat_id,name)
 name = string.gsub(name,"باي","هلو")
 name = string.gsub(name,"فهمت","مافهمت")
 name = string.gsub(name,"موزين","زين")
@@ -960,14 +1378,14 @@ name = string.gsub(name,"موعطشان","عطشان")
 name = string.gsub(name,"خوش ولد","موخوش ولد")
 name = string.gsub(name,"اني","مطي")
 name = string.gsub(name,"هادئ","عصبي")
-return LuaTele.sendText(msg_chat_id,msg_id,"● اسرع واحد يدز العكس ~ {"..name.."}","md",true)  
+return send(msg_chat_id,msg_id,"● اسرع واحد يدز العكس ~ {"..name.."}","md",true)  
 end
 end
 if text == "صور مشاهير" or text == "مشاهير" then
-if Redis:get(noor.."Status:Games"..msg.chat_id) then
+if Redis:get(TheMalak.."Status:Games"..msg.chat_id) then
 KlamSpeed = {"شوان","سام","ايد شيرين","جاستين","اريانا","سام سميث","ايد","جاستين","معزه","ميسي","صلاح","محمد صلاح","احمد عز","كريستيانو","كريستيانو رونالدو","رامز جلال","امير كراره","ويجز","بابلو","تامر حسني","ابيو","شيرين","نانسي عجرم","محمد رمضان","احمد حلمي","محمد هنيدي","حسن حسني","حماقي","احمد مكي"};
 name = KlamSpeed[math.random(#KlamSpeed)]
-Redis:set(noor.."mshaher"..msg.chat_id,name)
+Redis:set(TheMalak.."mshaher"..msg.chat_id,name)
 name = string.gsub(name,"شوان","https://t.me/apqiy/137")
 name = string.gsub(name,"سام","https://t.me/apqiy/136")
 name = string.gsub(name,"ايد شيرين","https://t.me/apqiy/135")
@@ -998,10 +1416,10 @@ https.request("https://api.telegram.org/bot"..Token.."/sendphoto?chat_id="..msg.
 end
 end
 if text == "صور" or text == "بوب" then
-if Redis:get(noor.."Status:Games"..msg.chat_id) then
+if Redis:get(TheMalak.."Status:Games"..msg.chat_id) then
 KlamSpeed = {"شوان","سام","ايد شيرين","جاستين","اريانا","سام سميث","ايد","جاستين","معزه","ميسي","صلاح","محمد صلاح","احمد عز","كريستيانو","كريستيانو رونالدو","رامز جلال","امير كراره","ويجز","بابلو","تامر حسني","ابيو","شيرين","نانسي عجرم","محمد رمضان","احمد حلمي","محمد هنيدي","حسن حسني","حماقي","احمد مكي"};
 name = KlamSpeed[math.random(#KlamSpeed)]
-Redis:set(noor.."mshaher"..msg.chat_id,name)
+Redis:set(TheMalak.."mshaher"..msg.chat_id,name)
 name = string.gsub(name,"شوان","https://t.me/apqiy/137")
 name = string.gsub(name,"سام","https://t.me/apqiy/136")
 name = string.gsub(name,"ايد شيرين","https://t.me/apqiy/135")
@@ -1032,8 +1450,8 @@ https.request("https://api.telegram.org/bot"..Token.."/sendphoto?chat_id="..msg.
 end
 end
 if text == "بات" or text == "محيبس" then   
-if Redis:get(noor.."Status:Games"..msg.chat_id) then 
-local reply_markup = LuaTele.replyMarkup{
+if Redis:get(TheMalak.."Status:Games"..msg.chat_id) then 
+local reply_markup = bot.replyMarkup{
 type = 'inline',
 data = {
 {
@@ -1047,7 +1465,7 @@ data = {
 },
 }
 }
-return LuaTele.sendText(msg_chat_id,msg_id, [[*
+return send(msg_chat_id,msg_id, [[*
 ● لعبه المحيبس هي لعبة الحظ 
 ● جرب حظك ويه البوت واتونس 
 ● كل ما عليك هوا الضغط على احدى العضمات في الازرار
@@ -1055,8 +1473,8 @@ return LuaTele.sendText(msg_chat_id,msg_id, [[*
 end
 end
 if text == "خواتم" or text == "خاتم" then   
-if Redis:get(noor.."Status:Games"..msg.chat_id) then 
-local reply_markup = LuaTele.replyMarkup{
+if Redis:get(TheMalak.."Status:Games"..msg.chat_id) then 
+local reply_markup = bot.replyMarkup{
 type = 'inline',
 data = {
 {
@@ -1070,17 +1488,17 @@ data = {
 },
 }
 }
-return LuaTele.sendText(msg_chat_id,msg_id, [[*
+return send(msg_chat_id,msg_id, [[*
 ⏺꒐ اختر اليد التي تتوقع فيها الخاتم
 *]],"md",false, false, false, false, reply_markup)
 end
 end
 if text == 'مراهنه' or text == 'مراهنة' then
-if not Redis:sismember(noor.."hsab:bnk",msg.sender_id.user_id) then
-return LuaTele.sendText(msg.chat_id,msg.id, "⇜ ماعندك حساب بنكي ارسل ↢ ( `انشاء حساب بنكي` )","md",true)
+if not Redis:sismember(TheMalak.."hsab:bnk",msg.sender_id.user_id) then
+return send(msg.chat_id,msg.id, "⇜ ماعندك حساب بنكي ارسل ↢ ( `انشاء حساب بنكي` )","md",true)
 end
 local xxffxx = 'اهلا بك في لعبه مراهنه يجب انضمام 3 لاعبين فقط'
-local reply_markup = LuaTele.replyMarkup{
+local reply_markup = bot.replyMarkup{
 type = 'inline',
 data = {
 {
@@ -1088,12 +1506,12 @@ data = {
 },
 }
 }
-Redis:del(noor..'rolet:list'..msg.chat_id) 
-return LuaTele.sendText(msg_chat_id,msg_id,xxffxx,"md",false, false, false, false, reply_markup)
+Redis:del(TheMalak..'rolet:list'..msg.chat_id) 
+return send(msg_chat_id,msg_id,xxffxx,"md",false, false, false, false, reply_markup)
 end
 if text == 'الجسوس'  then
 local xxffxx = 'اهلا بك في لعبه مراهنه يجب انضمام 4 لاعبين فقط'
-local reply_markup = LuaTele.replyMarkup{
+local reply_markup = bot.replyMarkup{
 type = 'inline',
 data = {
 {
@@ -1101,12 +1519,12 @@ data = {
 },
 }
 }
-Redis:del(noor..'rolet:gast'..msg.chat_id) 
-return LuaTele.sendText(msg_chat_id,msg_id,xxffxx,"md",false, false, false, false, reply_markup)
+Redis:del(TheMalak..'rolet:gast'..msg.chat_id) 
+return send(msg_chat_id,msg_id,xxffxx,"md",false, false, false, false, reply_markup)
 end
 if text == 'حجره' or text == 'حجره ورقه' or text == 'حجر' then
 local xxffxx = '✴️ › اهلا بك في لعبه حجره ورقه مقص \n 💁 › اختر بين ⤵️\n (حجر - ورق - مقص ) '
-local reply_markup = LuaTele.replyMarkup{
+local reply_markup = bot.replyMarkup{
 type = 'inline',
 data = {
 {
@@ -1120,22 +1538,22 @@ data = {
 },
 }
 }
-return LuaTele.sendText(msg_chat_id,msg_id,xxffxx,"md",false, false, false, false, reply_markup)
+return send(msg_chat_id,msg_id,xxffxx,"md",false, false, false, false, reply_markup)
 end
 
 
 if text == "خمن" or text == "تخمين" then   
-if Redis:get(noor.."Status:Games"..msg.chat_id) then
+if Redis:get(TheMalak.."Status:Games"..msg.chat_id) then
 Num = math.random(1,20)
-Redis:set(noor.."Game:Estimate"..msg.chat_id..msg.sender_id.user_id,Num)  
-return LuaTele.sendText(msg_chat_id,msg_id,"\n● اهلا بك عزيزي في لعبة التخمين :\nٴ━━━━━━━━━━\n".."● ملاحظه لديك { 3 } محاولات فقط فكر قبل ارسال تخمينك \n\n".."● سيتم تخمين عدد ما بين ال {1 و 20} اذا تعتقد انك تستطيع الفوز جرب واللعب الان ؟ ","md",true)  
+Redis:set(TheMalak.."Game:Estimate"..msg.chat_id..msg.sender_id.user_id,Num)  
+return send(msg_chat_id,msg_id,"\n● اهلا بك عزيزي في لعبة التخمين :\nٴ━━━━━━━━━━\n".."● ملاحظه لديك { 3 } محاولات فقط فكر قبل ارسال تخمينك \n\n".."● سيتم تخمين عدد ما بين ال {1 و 20} اذا تعتقد انك تستطيع الفوز جرب واللعب الان ؟ ","md",true)  
 end
 end
 if text == "المختلف" then
-if Redis:get(noor.."Status:Games"..msg.chat_id) then
+if Redis:get(TheMalak.."Status:Games"..msg.chat_id) then
 mktlf = {"😸","☠","🐼","🐇","🌑","🌚","⭐️","✨","⛈","🌥","⛄️","👨‍🔬","👨‍💻","👨‍🔧","🧚‍♀","●‍♂","🧝‍♂","🙍‍♂","🧖‍♂","👬","●","🕤","⌛️","📅",};
 name = mktlf[math.random(#mktlf)]
-Redis:set(noor.."Game:Difference"..msg.chat_id,name)
+Redis:set(TheMalak.."Game:Difference"..msg.chat_id,name)
 name = string.gsub(name,"😸","😹😹😹😹😹😹😹😹😸😹😹😹😹")
 name = string.gsub(name,"☠","💀💀💀💀💀💀💀☠●💀💀💀💀")
 name = string.gsub(name,"🐼","👻👻👻??👻👻👻👻👻👻👻")
@@ -1162,14 +1580,14 @@ name = string.gsub(name,"🕒","🕒🕒🕒🕒??🕒🕓🕒🕒🕒")
 name = string.gsub(name,"🕤","🕥🕥🕥🕥??🕤🕥🕥🕥")
 name = string.gsub(name,"⌛️","⏳⏳⏳⏳⏳⏳⌛️⏳⏳")
 name = string.gsub(name,"📅","📆📆📆📆📆📆📅📆📆")
-return LuaTele.sendText(msg_chat_id,msg_id,"● اسرع واحد يدز الاختلاف ~ {"..name.."}","md",true)  
+return send(msg_chat_id,msg_id,"● اسرع واحد يدز الاختلاف ~ {"..name.."}","md",true)  
 end
 end
 if text == "امثله" then
-if Redis:get(noor.."Status:Games"..msg.chat_id) then
+if Redis:get(TheMalak.."Status:Games"..msg.chat_id) then
 mthal = {"جوز","ضراطه","الحبل","الحافي","شقره","بيدك","سلايه","النخله","الخيل","حداد","المبلل","يركص","قرد","العنب","العمه","الخبز","بالحصاد","شهر","شكه","يكحله",};
 name = mthal[math.random(#mthal)]
-Redis:set(noor.."Game:Example"..msg.chat_id,name)
+Redis:set(TheMalak.."Game:Example"..msg.chat_id,name)
 name = string.gsub(name,"جوز","ينطي____للماعده سنون")
 name = string.gsub(name,"ضراطه","الي يسوق المطي يتحمل___")
 name = string.gsub(name,"بيدك","اكل___محد يفيدك")
@@ -1190,72 +1608,10 @@ name = string.gsub(name,"شهر","امشي__ولا تعبر نهر")
 name = string.gsub(name,"شكه","يامن تعب يامن__يا من على الحاضر لكة")
 name = string.gsub(name,"القرد","__بعين امه غزال")
 name = string.gsub(name,"يكحله","اجه___عماها")
-return LuaTele.sendText(msg_chat_id,msg_id,"● اسرع واحد يكمل المثل ~ {"..name.."}","md",true)  
-end
-end
-if text and text:match("^بيع مجوهراتي (%d+)$") then
-local NumGame = text:match("^بيع مجوهراتي (%d+)$") 
-if tonumber(NumGame) == tonumber(0) then
-return LuaTele.sendText(msg_chat_id,msg_id,"\n*● لا استطيع البيع اقل من 1 *","md",true)  
-end
-local NumberGame = Redis:get(noor.."Num:Add:Games"..msg.chat_id..msg.sender_id.user_id)
-if tonumber(NumberGame) == tonumber(0) then
-return LuaTele.sendText(msg_chat_id,msg_id,"● ليس لديك جواهر من الالعاب \n● اذا كنت تريد ربح الجواهر \n● ارسل الالعاب وابدأ اللعب ! ","md",true)  
-end
-if tonumber(NumGame) > tonumber(NumberGame) then
-return LuaTele.sendText(msg_chat_id,msg_id,"\n● ليس لديك جواهر بهاذا العدد \n● لزيادة مجوهراتك في اللعبه \n● ارسل الالعاب وابدأ اللعب !","md",true)   
-end
-local NumberGet = (NumGame * 50)
-Redis:decrby(noor.."Num:Add:Games"..msg.chat_id..msg.sender_id.user_id,NumGame)  
-Redis:incrby(noor.."Num:Message:User"..msg.chat_id..":"..msg.sender_id.user_id,NumGame)  
-return LuaTele.sendText(msg_chat_id,msg_id,"● تم خصم *~ { "..NumGame.." }* من مجوهراتك \n● وتم اضافة* ~ { "..(NumGame * 50).." } رساله الى رسالك *","md",true)  
-end 
-if text and text:match("^اضف مجوهرات (%d+)$") and msg.reply_to_message_id ~= 0 then
-if ChannelJoin(msg) == false then
-local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = 't.me/'..Redis:get(noor..'ch:admin')}, },}}
-return LuaTele.sendText(msg.chat_id,msg.id,'*\n● عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
-end
-if not msg.Addictive then
-return LuaTele.sendText(msg_chat_id,msg_id,'\n*● هاذا الامر يخص { '..Controller_Num(7)..' }* ',"md",true)  
-end
-local Message_Reply = LuaTele.getMessage(msg.chat_id, msg.reply_to_message_id)
-local UserInfo = LuaTele.getUser(Message_Reply.sender_id.user_id)
-if UserInfo.message == "Invalid user ID" then
-return LuaTele.sendText(msg_chat_id,msg_id,"\n● عذرآ تستطيع فقط استخدام الامر على المستخدمين ","md",true)  
-end
-if UserInfo and UserInfo.type and UserInfo.type.luatele == "userTypeBot" then
-return LuaTele.sendText(msg_chat_id,msg_id,"\n● عذرآ لا تستطيع استخدام الامر على البوت ","md",true)  
-end
-Redis:incrby(noor.."Num:Add:Games"..msg.chat_id..Message_Reply.sender_id.user_id, text:match("^اضف مجوهرات (%d+)$"))  
-return LuaTele.sendText(msg_chat_id,msg_id,Reply_Status(Message_Reply.sender_id.user_id,"● تم اضافه له { "..text:match("^اضف مجوهرات (%d+)$").." } من المجوهرات").Reply,"md",true)  
-end
-if text and text:match("^اضف رسائل (%d+)$") and msg.reply_to_message_id ~= 0 then
-if ChannelJoin(msg) == false then
-local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = 't.me/'..Redis:get(noor..'ch:admin')}, },}}
-return LuaTele.sendText(msg.chat_id,msg.id,'*\n● عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
-end
-if not msg.Addictive then
-return LuaTele.sendText(msg_chat_id,msg_id,'\n*● هاذا الامر يخص { '..Controller_Num(7)..' }* ',"md",true)  
-end
-local Message_Reply = LuaTele.getMessage(msg.chat_id, msg.reply_to_message_id)
-local UserInfo = LuaTele.getUser(Message_Reply.sender_id.user_id)
-if UserInfo.message == "Invalid user ID" then
-return LuaTele.sendText(msg_chat_id,msg_id,"\n● عذرآ تستطيع فقط استخدام الامر على المستخدمين ","md",true)  
-end
-if UserInfo and UserInfo.type and UserInfo.type.luatele == "userTypeBot" then
-return LuaTele.sendText(msg_chat_id,msg_id,"\n● عذرآ لا تستطيع استخدام الامر على البوت ","md",true)  
-end
-Redis:incrby(noor.."Num:Message:User"..msg.chat_id..":"..Message_Reply.sender_id.user_id, text:match("^اضف رسائل (%d+)$"))  
-return LuaTele.sendText(msg_chat_id,msg_id,Reply_Status(Message_Reply.sender_id.user_id,"● تم اضافه له { "..text:match("^اضف رسائل (%d+)$").." } من الرسائل").Reply,"md",true)  
-end
-if text == "مجوهراتي" then 
-local Num = Redis:get(noor.."Num:Add:Games"..msg.chat_id..msg.sender_id.user_id) or 0
-if Num == 0 then 
-return LuaTele.sendText(msg_chat_id,msg_id, "● لم تفز بأي مجوهره ","md",true)  
-else
-return LuaTele.sendText(msg_chat_id,msg_id, "● عدد الجواهر التي ربحتها *← "..Num.." *","md",true)  
+return send(msg_chat_id,msg_id,"● اسرع واحد يكمل المثل ~ {"..name.."}","md",true)  
 end
 end
 
+
 end
-return {noor = reply}
+return {TheMalak = reply}
