@@ -21,14 +21,14 @@ end
 
 
 
-if text == 'تفعيل النسخه التلقائيه' then   
+if text == '᥀›تفعيل النسخه التلقائيه' then   
 if not msg.Asasy then 
 return send(msg_chat_id,msg_id,'\n*⌔︙هاذا الامر يخص { '..Controller_Num(1)..' }* ',"md",true)  
 end
 Redis:setex(TheMalak.."Status:SendFile",28800,true) 
 return send(msg_chat_id,msg_id,"⌔︙تم تفعيل جلب نسخة الكروبات التلقائيه","md")
 end
-if text == 'تعطيل النسخه التلقائيه' then  
+if text == '᥀›تعطيل النسخه التلقائيه' then  
 if not msg.Asasy then 
 return send(msg_chat_id,msg_id,'\n*⌔︙هاذا الامر يخص { '..Controller_Num(1)..' }* ',"md",true)  
 end
@@ -180,7 +180,7 @@ bot.sendDocument(msg_chat_id,msg_id,'./'..UserBot..'.json', '*● تم جلب ا
 Redis:setex(TheMalak.."Status:SendFile",28800,true) 
 
 end
-if text == 'جلب نسخه الردود العامه ᥀' then
+if text == '᥀ ›جلب نسخه الردود العامه' then
 if not msg.Asasy then 
 return send(msg_chat_id,msg_id,'\n*℘︙هذا الامر يخص { '..Controller_Num(1)..' }* ',"md",true)  
 end
@@ -268,7 +268,7 @@ end
 end
 
 
-if text == 'جلب نسخه الردود ᥀' then
+if text == '᥀ ›جلب نسخه الردود' then
 if not msg.Asasy then 
 return send(msg_chat_id,msg_id,'\n*℘︙هذا الامر يخص { '..Controller_Num(1)..' }* ',"md",true)  
 end
