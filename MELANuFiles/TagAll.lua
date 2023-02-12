@@ -22,8 +22,8 @@ end
 
 ----Barlo----
 
-if text == "تاك عام" or text == "@all" or text == "all" or text == "#all"
-if not msg.Addictive then
+if text == "تاك عام" or text == "@all" or text == "all" or text == "#all" then
+if not msg.Manger then
 return send(msg_chat_id,msg_id,'\n* ● هاذا الامر يخص 〘 '..Controller_Num(7)..' 〙* ',"md",true)  
 end
 local Info_Members = bot.searchChatMembers(msg_chat_id, "*", 70000)
@@ -45,7 +45,7 @@ send(msg_chat_id,msg_id,listall,"md",true)
 end 
 if text and text:match("^all (.*)$") or text:match("^@all (.*)$") or text == "@all" or text == "all" then 
 local ttag = text:match("^all (.*)$") or text:match("^@all (.*)$") 
-if not msg.Managers then
+if not msg.Manger then
 return send(msg_chat_id,msg_id,'\n*● هاذا الامر يخص⦗ '..Controller_Num(6)..' ⦘* ',"md",true)  
 end
 if Redis:get(TheMalak.."lockalllll"..msg_chat_id) == "off" then
