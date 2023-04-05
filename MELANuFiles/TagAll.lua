@@ -10,10 +10,10 @@ end
 if tonumber(msg.sender_id.user_id) == tonumber(RMAD) then
 return false
 end
-msg.chat_id = msg.chat_id
-msg_id = msg.id
+msg_chat_id = msg_chat_id
+msg_id = msg_id
 if text then
-local neww = Redis:get(RMAD.."All:Get:Reides:Commands:Group"..text) or Redis:get(RMAD.."Get:Reides:Commands:Group"..msg.chat_id..":"..text)
+local neww = Redis:get(RMAD.."All:Get:Reides:Commands:Group"..text) or Redis:get(RMAD.."Get:Reides:Commands:Group"..msg_chat_id..":"..text)
 if neww then
 text = neww or text
 end
