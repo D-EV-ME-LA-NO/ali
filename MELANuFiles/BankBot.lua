@@ -1084,5 +1084,4 @@ return merolua.sendText(msg.chat_id,msg.id, "⌯︙ماعندك حساب بنك�
 end
 end
 end
-end
 return {RMAD = reply}
