@@ -10,8 +10,8 @@ end
 if tonumber(msg.sender_id.user_id) == tonumber(RMAD) then
 return false
 end
-msg_chat_id = msg_chat_id
-msg_id = msg_id
+msg_chat_id = msg.chat_id
+msg_id = msg.id
 if text then
 local neww = Redis:get(RMAD.."All:Get:Reides:Commands:Group"..text) or Redis:get(RMAD.."Get:Reides:Commands:Group"..msg_chat_id..":"..text)
 if neww then
@@ -26,7 +26,7 @@ if text == "تاك عام" or text == "@all" or text == "all" or text == "#all" 
 if not msg.Manager then
 return merolua.sendText(msg.chat_id,msg.id,'\n* ● هاذا الامر يخص 〘 '..Controller_Num(7)..' 〙* ',"md",true)  
 end
-local Info_Members = merolua.searchChatMembers(msg.chat_id, "*", 70000)
+local Info_Members = merolua.searchChatMembers(msg_chat_id, "*", 70000)
 x = 0
 tags = 0
 local list = Info_Members.members
@@ -48,10 +48,10 @@ local ttag = text:match("^all (.*)$") or text:match("^@all (.*)$")
 if not msg.Manager then
 return merolua.sendText(msg.chat_id,msg.id,'\n*● هاذا الامر يخص⦗ '..Controller_Num(6)..' ⦘* ',"md",true)  
 end
-if Redis:get(RMAD.."lockalllll"..msg.chat_id) == "off" then
+if Redis:get(RMAD.."lockalllll"..msg_chat_id) == "off" then
 return merolua.sendText(msg.chat_id,msg.id,'*● تم تعطيل @all من قبل المدراء*',"md",true)  
 end
-local Info_Members = merolua.searchChatMembers(msg.chat_id, "*", 200)
+local Info_Members = merolua.searchChatMembers(msg_chat_id, "*", 200)
 x = 0 
 tags = 0 
 local list = Info_Members.members
@@ -74,9 +74,9 @@ Text = t:gsub('#all\n '..ttag..',','#all\n '..ttag..'\n')
 else 
 Text = t:gsub('#all,','#all\n')
 end
-merolua.sendText(msg.chat_id,Text,0,'md') 
+merolua.sendText(msg_chat_id,Text,0,'md') 
 end 
 end 
 end 
-end 
+end
 return {RMAD = reply}
