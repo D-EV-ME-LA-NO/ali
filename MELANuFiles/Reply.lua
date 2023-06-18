@@ -1,357 +1,200 @@
 function reply(msg)
 text = nil
 if msg and msg.content and msg.content.text then
-xname =  (Redis:get(TheRMAD.."Name:Bot") or "الفخم") 
+xname =  (Redis:get(Dragon.."Name:Bot") or "كرستين") 
 text = msg.content.text.text
 if text:match("^"..xname.." (.*)$") then
 text = text:match("^"..xname.." (.*)$")
 end
 end
-if tonumber(msg.sender_id.user_id) == tonumber(TheRMAD) then
+if tonumber(msg.sender_id.user_id) == tonumber(Dragon) then
 return false
 end
 msg_chat_id = msg.chat_id
 msg_id = msg.id
 if text then
-local neww = Redis:get(TheRMAD.."All:Get:Reides:Commands:Group"..text) or Redis:get(TheRMAD.."Get:Reides:Commands:Group"..msg_chat_id..":"..text)
+local neww = Redis:get(Dragon.."Get:Reides:Commands:Group"..msg.chat_id..":"..text) or Redis:get(Dragon.."All:Get:Reides:Commands:Group"..text)
 if neww then
 text = neww or text
 end
 end
-if text == "تفعيل ردود السورس عام" then
-if not msg.ControllerBot then 
-return merolua.sendText(msg_chat_id,msg_id,"\n*⌔︙هذا الامر يخص { "..Controller_Num(1).." }* ","md",true)  
-end
-Redis:del(TheRMAD.."TheRMAD:Status:repleall") 
-return merolua.sendText(msg_chat_id,msg_id,"*⌔︙تم تفعيل ردود السورس عام*","md",true )
-end
-if text == "تعطيل ردود السورس عام" then
-if not msg.ControllerBot then 
-return merolua.sendText(msg_chat_id,msg_id,"\n*⌔︙هذا الامر يخص { "..Controller_Num(1).." }* ","md",true)  
-end
-Redis:set(TheRMAD.."TheRMAD:Status:repleall",true) 
-return merolua.sendText(msg_chat_id,msg_id,"*⌔︙تم تعطيل ردود السورس عام*","md",true )
-end
 
-if text== "انجب"  or text== "نجب"  or text=="انجبي"  or text=="نجبي"  then
-if msg.ControllerBot then  
-return merolua.sendText(msg.chat_id,msg.id,"تامر امر سيادة المطور تاج راسي 😊")
-elseif msg.TheBasicsQ then 
-return merolua.sendText(msg.chat_id,msg.id,"انت المالك على راسي على راسسيي بصوت ابو علوش العراقي😂")
-elseif msg.Originators then 
-return merolua.sendText(msg.chat_id,msg.id,"حبيبي والله المنشئ بعد اخذلك راشدي فد مره 😒😂")
-elseif msg.Managers then 
-return merolua.sendText(msg.chat_id,msg.id,"اكلك شنو واذا مدير عود ؟ يله راح اسكت لخاطر البقية 🙂🙂")
-elseif msg.Addictive then 
-return merolua.sendText(msg.chat_id,msg.id,"فوك ممنطيك رتبةادمن هيج تجازيني ؟ انت انجب 😑")
-else 
-return merolua.sendText(msg.chat_id,msg.id,"انجب لك لا اشحتك 😒")
+----Barlo----
+if not Redis:get(Dragon..'SOFI:Lock:Reply'..msg.chat_id) then
+if text == "انجب" or text == "نجب" or text == "انجبي" or text == "نجبي" or text == "انجبو" or text == "نجبو" then
+if msg.SecondSudo then
+rd = 'مطوريي اغلط شكد متريد نورتنه ، ♥️💪🏿'
+elseif msg.SudoBot then
+rd = 'احترم نفسكك لا عبالكك رافعيك مطور ، 🖕🏿♥️'
+elseif msg.Owner then
+rd = 'تاج راسيي غير انت منشئ المجموعه ،🖐🏿♥️'
+elseif msg.BasicConstructor then
+rd = 'تاج راسيي انت المنشئ الاساسي ،🖐🏿♥️'
+elseif msg.BasicConstructor then
+rd = 'حبيبي المنشئ استقبلها منكك ،👍🏿♥️'
+elseif msg.Manager then
+rd = 'حبيبي راح اسامحكك لان مدير وع راسي ، 🖐🏿♥️'
+elseif msg.Admin then
+rd = 'راح اسامحكك هلمره لانك ادمن ، ☝🏿♥️'
+elseif msg.VipMem then
+rd = 'راح احترمكك تره بس هلمره لانك مميز عندي ، ☝🏿♥️'
+else
+rd = 'لكك هوه انت عضو وجاي تغلط ؟، 🖕🏿♥️'
+end
+return merolua.sendText(msg.chat_id,msg.id, rd, 'html',true)
+end
+if text == 'دي' or text == 'ديي' or text == 'دي بابه' then 
+Dragon =  "آخلُِآقٌڪڪ لُِڪڪ 𖠙 😒🔪"
+merolua.sendText(msg.chat_id,msg.id,Dragon,"md",true)  
+return false
+end
+if text == 'سلام' or text == 'سلام عليكم' or text == 'السلام عليكم' or text == 'سلامم عليكم' or text == 'السلامم عليكم' or text == 'سلامم' or text == 'السلام على من رد السلام' then
+local Dragon = {"و ؏ـليڪم ؏ـمࢪي 🤍","و ؏ـليڪم السلام ❤️‍🔥","و ؏ـليڪم حـَبـيبيَ ♥️","و ؏ـليڪم السلام يَابُةه 💖"," آطلـقْ سـلامَ 😔🍇","و ؏ـليڪم السلام و رحمه الله 🤍"}
+merolua.sendText(msg.chat_id,msg.id,''..Dragon[math.random(#Dragon)]..'',"md",true)  
+return false
 end 
+if text == '😭💔' or text == '😭😭' or text == '😭😭😭' or text == '😿💔' or text == '😭😭😭' or text == '😭😭😭😭' then 
+Dragon =  "مآآعٍآشُ آلُِي يزعٍلُِڪڪ 𖠙 😏♥️"
+merolua.sendText(msg.chat_id,msg.id,Dragon,"md",true)  
+return false
+end
+if text == '🌚💔' or text == '💔🌚' or text == '🚶‍♂💔' or text == '💔' or text == '😔💔' or text == '🚶‍♀💔' or text == '😭' then 
+Dragon =  "شبّيي اﻟ̣̣פﻟ̣̣و 𖠙 😿💔"
+merolua.sendText(msg.chat_id,msg.id,Dragon,"md",true)  
+return false
+end
+if text == 'باي' or text == 'بااي' or text == 'اروح' or text == 'اروح احسن' or text == 'اولي احسن' or text == 'راح اروح' or text == 'باي انام' then 
+Dragon =  "أُرٌجُعُ عٍيدِهآآ مٍوو تنِْسةه 𖠙 🤤♥️"
+merolua.sendText(msg.chat_id,msg.id,Dragon,"md",true)  
+return false
+end
+if text == 'هلو' or text == 'هلا' or text == 'هلاو' or text == 'ههلا' or text == 'ههلاو' or text == 'هلاو' or text == 'هاي' or text == 'ههاي' then
+local Dragon = {"ۿهـلاٱ ؏ـمࢪي 🤍","هٓهَـلاٱ گ̲ـلبي❤️‍🔥","ۿـلاٱ حـَبـيبيَ ♥️","ڪل الۿـلاآ يَابُةه 💖"," آطلـق ۿهَـلآو ❤️‍🩹🧸","هُهَـلاٱ يـٰٰرﯞحـًٛيہ🙊💞","ۿـلاٱ بَلحـبَ ﻣﻣـَاُلتي 😔💖"}
+Dragon2 = math.random(#Dragon) 
+merolua.sendText(msg.chat_id,msg.id,Dragon[Dragon2],"md",true)  
+return false
+end
+if text == 'شونك' or text == 'شونج' or text == 'شلونك' or text == 'شلونج' or text == 'شونكم' or text == 'شلونكم' or text == 'شلخبار' or text == 'شلون الاخبار' or text == 'شخبارك' then 
+local Dragon = {"ماﺷ͠ يةھَہّ يﻋ̝̚مريي ۅاﻧﺗ̲ت 𖠙 🤤♥️" ,"الحۡمۘدللهۂَ ٰوانۨہتت 𖠙 🤤♥️","تمۘامۘ عمۘري ٰوانۨہتت 𖠙 🤤♥️"} 
+Dragon2 = math.random(#Dragon) 
+merolua.sendText(msg.chat_id,msg.id,Dragon[Dragon2] ,"md",true)  
+return false
+end
+if text == 'وينك' or text == 'وينج' then
+Dragon =  "مْوٌجہوٌدِ يہمْگُ يحلوُ 𖠙 😉♥️"
+merolua.sendText(msg.chat_id,msg.id,Dragon,"md",true)  
+return false
+end
+if text == 'بوت عواي' or text == 'بوت زربه' or text == 'البوت عاوي' or text == 'البوت زربه' then
+Dragon =  "اطردكك تجرب ؟ ، 😕🔪"
+merolua.sendText(msg.chat_id,msg.id,Dragon,"md",true)  
+return false
+end
+if text == 'نايمين' or text == 'ميتين' then
+Dragon =  "طُآمسين ووعٍيوونڪ 𖠙 😪🖤ۦ"
+merolua.sendText(msg.chat_id,msg.id,Dragon,"md",true)  
+return false
+end
+if text == 'هلوباي' or text == 'هلو باي' then  
+Dragon =  "شحۡسۜيت مۘنۨہ هيجۚ ּكتبت ؟ 🌝♥️"
+merolua.sendText(msg.chat_id,msg.id,Dragon,"md",true)  
+return false
+end
+if text == 'اكلك' or text == 'اكلج' or text == 'اكلكم' then 
+Dragon =  "ڪوولُِ مآڪوولُِ لُِآحٍدِ 𖠙 😉♥️"
+merolua.sendText(msg.chat_id,msg.id,Dragon, "md",true)  
+return false
+end
+if text == 'فرخ' or text == 'فرخه' then
+Dragon =  "ٰوينۨہهۂَ خۡل احۡصرهۂَ 𖠙 😹♥️" 
+merolua.sendText(msg.chat_id,msg.id,Dragon,"md",true)  
+return false
+end
+if text == 'سورس صوفي' or text == 'سورس دراكون' or text == 'سورس دراكون' or text == 'سورس زربه' or text == 'السورس زربه' or text == 'سورس عاوي' or text == 'السورس عاوي' then 
+Dragon =  "لُِآ سوورس خآلُِتڪ دِي لُِڪ 𖠙 😒🔪" 
+merolua.sendText(msg.chat_id,msg.id,Dragon, "md",true)  
+return false
+end
+if text == 'بوسني' or text == 'بوسيني' then 
+Dragon =  "-محِااﭑةه ، ݪسِقق  🥺♥️♥️؟." 
+merolua.sendText(msg.chat_id,msg.id,Dragon, "md",true)  
+return false
+end
+if text == "صباحوا" or text == "صباح الخير" or text == "صباحو" then
+Dragon =  "صَباحيّ ، ﭑنتةه🥺💞💞." 
+merolua.sendText(msg.chat_id,msg.id,Dragon, "md",true)  
+return false
+end
+if text == "اكو بوت" or text == "اكو بوت؟" or text == "عدكم بوت" or text == "عندكم بوت" or text == "عدكم بوت؟" or text == "عندكم بوت؟" or text == "تردون بوت" or text == "تردون بوت؟" or text == "وين البوت" or text == "وين البوت؟" then
+Dragon =  "-موَ بعَينڪۃ ، شنيَ ، 🌝🌝." 
+merolua.sendText(msg.chat_id,msg.id,Dragon, "md",true)  
+return false
+end
+if text == "جاو" or text == "ججاو" then
+Dragon =  "- ۅَتعۅفنيَ ؟." 
+merolua.sendText(msg.chat_id,msg.id,Dragon, "md",true)  
+return false
+end
+if text == "تف" or text == "تفف" then
+Dragon =  "چا غير مَي ، ۅࢪدَ ،" 
+merolua.sendText(msg.chat_id,msg.id,Dragon, "md",true)  
+return false
+end
+if text == "تحبني" or text == "تحبني؟" or text == "تحبني؟؟" then
+Dragon =  "شعندِيّ ، غيࢪكَ🥵♥️♥️♥️" 
+merolua.sendText(msg.chat_id,msg.id,Dragon, "md",true)  
+return false
+end
+if text == "جوعان" or text == "جوعانه" then
+Dragon =  "ټعاَل ﭑڪلنيَ ، 🌝." 
+merolua.sendText(msg.chat_id,msg.id,Dragon, "md",true)  
+return false
+end
+if text == "ههه" or text == "هههه" or text == "ههههه" or text == "هههههه" or text == "ههههههه" then
+Dragon =  "جَعل ، محدَ غيݛكَ ، يضحكَ  ، ♥️♥️" 
+merolua.sendText(msg.chat_id,msg.id,Dragon, "md",true)  
+return false
+end
+if text == "وينكم" then
+Dragon =  "حَيݪيٰ ، 🥺💞" 
+merolua.sendText(msg.chat_id,msg.id,Dragon, "md",true)  
+return false
+end
+if text == "احبك" or text == "حبك" then
+Dragon =  "ﭑنيۿمَ ، قسمَہ، 🥺💞" 
+merolua.sendText(msg.chat_id,msg.id,Dragon, "md",true)  
+return false
+end
+if text == "بوت ملطلط" then
+Dragon =  "ربي صبرني 😞🌾" 
+merolua.sendText(msg.chat_id,msg.id,Dragon, "md",true)  
+return false
+end
+if text == 'وينك' or text == 'وينج' then
+Dragon =  "مْوٌجہوٌدِ يہمْگُ يحلوُ  😉♥️" 
+merolua.sendText(msg.chat_id,msg.id,Dragon, "md",true)  
+return false
+end
+
+if msg.Manager then
+if text == 'تفعيل ردود البوت' or text == 'تفعيل الردود' then
+if not Redis:get(Dragon..'SOFI:Lock:Reply'..msg.chat_id) then
+merolua.sendText(msg.chat_id,msg.id,'‹ : ردود البوت بالتاكيد مفعله ', "md",true)  
+else
+merolua.sendText(msg.chat_id,msg.id,'‹ : تم تفعيل ردود البوت', "md",true)  
+Redis:del(Dragon..'SOFI:Lock:Reply'..msg.chat_id)
+end end
+if text == 'تعطيل ردود البوت' or text == 'تعطيل الردود' then
+if Redis:get(Dragon..'SOFI:Lock:Reply'..msg.chat_id) then
+merolua.sendText(msg.chat_id,msg.id,'‹ : ردود البوت بالتاكيد معطله ', "md",true)  
+else
+Redis:set(Dragon..'SOFI:Lock:Reply'..msg.chat_id,true)
+merolua.sendText(msg.chat_id,msg.id,'‹ : تم تعطيل ردود البوت', "md",true)  
 end
-if Redis:get(TheRMAD..'TheRMAD:Status:repleall'..msg.chat_id) then
-if msg.ControllerBot and text=="هلو" and Redis:get(TheRMAD..'TheRMAD:Status:repleall'..msg.chat_id) then
-merolua.sendText(msg.chat_id,msg.id,sh[math.random(#sh)])
-end
-if not msg.ControllerBot and text=="هلو" and Redis:get(TheRMAD..'TheRMAD:Status:repleall'..msg.chat_id) then 
-return merolua.sendText(msg.chat_id,msg.id,ns[math.random(#ns)])
-end
-if not msg.ControllerBot and (text== "شلونكم" or text== "شلونك"  or text== "شونك"  or text== "شلونج"  or text== "شلونكم")  and Redis:get(TheRMAD..'TheRMAD:Status:repleall'..msg.chat_id) then
-return merolua.sendText(msg.chat_id,msg.id,sss[math.random(#sss)])
-end
-if not msg.ControllerBot and (text==" باي" or text == "باي")  and Redis:get(TheRMAD..'TheRMAD:Status:repleall'..msg.chat_id) then
-return merolua.sendText(msg.chat_id,msg.id,dr[math.random(#dr)])
-end
-if msg.ControllerBot and text== "احبك" and Redis:get(TheRMAD..'TheRMAD:Status:repleall'..msg.chat_id) then 
-return merolua.sendText(msg.chat_id,msg.id,"اموت عليك حياتي 🥰❤️")
-end
-if msg.ControllerBot and (text== "تحبني" or text=="حبك")  and Redis:get(TheRMAD..'TheRMAD:Status:repleall'..msg.chat_id) then 
-return merolua.sendText(msg.chat_id,msg.id,"اموت عليك حياتي 😍❤️")
-end
-if not msg.ControllerBot and (text== "احبك" or text=="حبك")  and Redis:get(TheRMAD..'TheRMAD:Status:repleall'..msg.chat_id) then
-return merolua.sendText(msg.chat_id,msg.id,lovm[math.random(#lovm)])
-end
-if not msg.ControllerBot and text== "تحبني" and Redis:get(TheRMAD..'TheRMAD:Status:repleall'..msg.chat_id) then
-return merolua.sendText(msg.chat_id,msg.id,lovm[math.random(#lovm)])
-end
-if text=="اطربنه" and Redis:get(TheRMAD..'TheRMAD:Status:repleall'..msg.chat_id) then 
-return merolua.sendText(msg.chat_id,msg.id,song[math.random(#song)])
-end
-if text== "تف" and Redis:get(TheRMAD..'TheRMAD:Status:repleall'..msg.chat_id) then
-return merolua.sendText(msg.chat_id,msg.id,"عليك 😂")
-end
-if text== "صاكه"  and Redis:get(TheRMAD..'TheRMAD:Status:repleall'..msg.chat_id) then
-return merolua.sendText(msg.chat_id,msg.id,"ويـــنههااا دلينييي عليههاااا 😂😍")
-end
-if text== "وينك"  and Redis:get(TheRMAD..'TheRMAD:Status:repleall'..msg.chat_id) then
-return merolua.sendText(msg.chat_id,msg.id,"يمك ولك 👌")
-end
-if text== "منورين"  and Redis:get(TheRMAD..'TheRMAD:Status:repleall'..msg.chat_id) then
-return merolua.sendText(msg.chat_id,msg.id,"مۘنۨــہ نۨــہورڪ ﻋـمـرّي ❤️🌺")
-end
-if text== "هاي"  and Redis:get(TheRMAD..'TheRMAD:Status:repleall'..msg.chat_id) then
-return merolua.sendText(msg.chat_id,msg.id,"هايات عمري 😍🍷")
-end
-if text== "🙊"  and Redis:get(TheRMAD..'TheRMAD:Status:repleall'..msg.chat_id) then
-return merolua.sendText(msg.chat_id,msg.id,"فديت الخجول 🥰 😍")
-end
-if text== "😢"  or text== "😭😭"  and Redis:get(TheRMAD..'TheRMAD:Status:repleall'..msg.chat_id) then
-return merolua.sendText(msg.chat_id,msg.id,"شبيك تبجي بوجه الله 🤨")
-end
-if text== "منور"  and Redis:get(TheRMAD..'TheRMAD:Status:repleall'..msg.chat_id) then
-return merolua.sendText(msg.chat_id,msg.id,"نورك يابعدهم كلهم ❤️")
-end
-if text== "😒" and Redis:get(TheRMAD..'TheRMAD:Status:repleall'..msg.chat_id) then
-return merolua.sendText(msg.chat_id,msg.id,"شبيك حب ؟")
-end
-if text== "مح"  and Redis:get(TheRMAD..'TheRMAD:Status:repleall'..msg.chat_id) then
-return merolua.sendText(msg.chat_id,msg.id,"مممحح شهالعسل 🙈❤")
-end
-if text== "شكرا"  or text== "ثكرا" and Redis:get(TheRMAD..'TheRMAD:Status:repleall'..msg.chat_id) then
-return  merolua.sendText(msg.chat_id,msg.id,"العفو ححــب 💕")
-end
-if text== "انته وين"  and Redis:get(TheRMAD..'TheRMAD:Status:repleall'..msg.chat_id) then
-return merolua.sendText(msg.chat_id,msg.id,"بالبيت ، شتريد ؟")
-end
-if text== "😍"  and Redis:get(TheRMAD..'TheRMAD:Status:repleall'..msg.chat_id) then
-return merolua.sendText(msg.chat_id,msg.id,"ها عاشك ؟ 🤣")
-end
-if text== "اكرهك"  and Redis:get(TheRMAD..'TheRMAD:Status:repleall'..msg.chat_id) then
-return merolua.sendText(msg.chat_id,msg.id,"ليش منو كلك احبك اني ؟ 😒😂")
-end
-if text== "اريد اكبل" and Redis:get(TheRMAD..'TheRMAD:Status:repleall'..msg.chat_id) then
-return merolua.sendText(msg.chat_id,msg.id,"تعال نكبل يله 😂💕")
-end
-if text== "ضوجه"  and Redis:get(TheRMAD..'TheRMAD:Status:repleall'..msg.chat_id) then
-return merolua.sendText(msg.chat_id,msg.id,"غير ماعندك حبيبه")
-end
-if text== "صاك"  and Redis:get(TheRMAD..'TheRMAD:Status:repleall'..msg.chat_id) then
-return merolua.sendText(msg.chat_id,msg.id,"ويينهههه دزززي صورته 😍")
-end
-if text== "اجيت"  or text=="اني اجيت" and Redis:get(TheRMAD..'TheRMAD:Status:repleall'..msg.chat_id) then
-return  merolua.sendText(msg.chat_id,msg.id,"ههــلا ورححب 🔥")
-end
-if text== "حفلش"  and Redis:get(TheRMAD..'TheRMAD:Status:repleall'..msg.chat_id) then
-return merolua.sendText(msg.chat_id,msg.id,"افلش راسك وربك")
-end
-if text== "نايمين" and Redis:get(TheRMAD..'TheRMAD:Status:repleall'..msg.chat_id) then
-return merolua.sendText(msg.chat_id,msg.id,"اني سهران احرسكم")
-end
-if text== "اكو احد" and Redis:get(TheRMAD..'TheRMAD:Status:repleall'..msg.chat_id) then
-return merolua.sendText(msg.chat_id,msg.id,"اي حبيبي انـي موجـود")
-end
-if text== "شكو" and Redis:get(TheRMAD..'TheRMAD:Status:repleall'..msg.chat_id) then
-return merolua.sendText(msg.chat_id,msg.id,"كلشي ماكو سلامتك️")
-end
-if text== "انت منو"  or text=="منو انت" and Redis:get(TheRMAD..'TheRMAD:Status:repleall'..msg.chat_id) then
-return merolua.sendText(msg.chat_id,msg.id,"⌔︙انآ بوت بوت أسمي ["..Bot_Name.."] ✓ \n⌔︙آختصـآصـي حمـآيهہ‌‏ آلمـجمـوعآت\n\n⌔︙مـن آلسـبآم وآلتوجيهہ‌‏ وآلتگرآر وآلخ...\n\n⌔︙ضيفني لكروبك وارفعني مشرف وارسل تفعيل داخل الكروب")
-end
-if text== "كلخرا"  or text== "اكل خره" and Redis:get(TheRMAD..'TheRMAD:Status:repleall'..msg.chat_id) then
-return merolua.sendText(msg.chat_id,msg.id,"تمام حط نفسك بماعون وتعال")
-end
-if text== "😔"  and Redis:get(TheRMAD..'TheRMAD:Status:repleall'..msg.chat_id) then
-return merolua.sendText(msg.chat_id,msg.id,"ليش الحلو ضايج")
-end
-if text== "☹️"  and Redis:get(TheRMAD..'TheRMAD:Status:repleall'..msg.chat_id) then
-return merolua.sendText(msg.chat_id,msg.id,"لضوج حبيبي")
-end
-if text== "جوعان"  and Redis:get(TheRMAD..'TheRMAD:Status:repleall'..msg.chat_id) then
-return merolua.sendText(msg.chat_id,msg.id,"تعال اكلني 😂")
-end
-if text== "خاصك"  and Redis:get(TheRMAD..'TheRMAD:Status:repleall'..msg.chat_id) then
-return merolua.sendText(msg.chat_id,msg.id,"ها ها ها زحفففتت")
-end
-if text== "لتحجي"  and Redis:get(TheRMAD..'TheRMAD:Status:repleall'..msg.chat_id) then
-return merolua.sendText(msg.chat_id,msg.id,"وانت شعليك حاجي من حلگگ😏")
-end
-if text== "معليك"  or text== "شعليك" and Redis:get(TheRMAD..'TheRMAD:Status:repleall'..msg.chat_id) then
-return merolua.sendText(msg.chat_id,msg.id,"عليه ونص 😂🤨")
-end
-if text== "شدسون"  or text== "شداتسوون"  or text== "شدتسون" and Redis:get(TheRMAD..'TheRMAD:Status:repleall'..msg.chat_id) then
-return  merolua.sendText(msg.chat_id,msg.id,"ناكل")
-end
-if text and text:match(Bot_Name.." شلونك$")   and Redis:get(TheRMAD..'TheRMAD:Status:repleall'..msg.chat_id) then 
-return merolua.sendText(msg.chat_id,msg.id,"بخير والعافيه عيونك")
-end
-if text== "يومه فدوه"  and Redis:get(TheRMAD..'TheRMAD:Status:repleall'..msg.chat_id) then
-return merolua.sendText(msg.chat_id,msg.id,"فدؤه الج حياتي 😍😙")
-end
-if text== "افلش"  and Redis:get(TheRMAD..'TheRMAD:Status:repleall'..msg.chat_id) then
-return merolua.sendText(msg.chat_id,msg.id,"فلش حتى افشل راسك وراس الخلفك")
-end
-if text== "احبج"  and Redis:get(TheRMAD..'TheRMAD:Status:repleall'..msg.chat_id) then
-return merolua.sendText(msg.chat_id,msg.id,"ياخي احترم شعوري اني حديقه")
-end
-if text== "شكو ماكو"  and Redis:get(TheRMAD..'TheRMAD:Status:repleall'..msg.chat_id) then
-return merolua.sendText(msg.chat_id,msg.id,"كلشي ماكو سلامتك️")
-end
-if text== "😋"  and Redis:get(TheRMAD..'TheRMAD:Status:repleall'..msg.chat_id) then
-return merolua.sendText(msg.chat_id,msg.id,"ضم لسانك جوه عيب")
-end
-if text== "مرحبا"  and Redis:get(TheRMAD..'TheRMAD:Status:repleall'..msg.chat_id) then
-return merolua.sendText(msg.chat_id,msg.id,"مرحبتين اهلا")
-end
-if text== "سلام"  or text== "السلام عليكم"  or text== "سلام عليكم"  or text=="سلامن عليكم"  or text=="السلامن عليكم" and Redis:get(TheRMAD..'TheRMAD:Status:repleall'..msg.chat_id) then 
-return merolua.sendText(msg.chat_id,msg.id,"عليكم السلام حياك" )
-end
-if text== "عضه"  and Redis:get(TheRMAD..'TheRMAD:Status:repleall'..msg.chat_id) then
-return merolua.sendText(msg.chat_id,msg.id,"شكلولك عليه جلب ؟ دروح بابا روح" )
-end
-if text== "🚶🏻‍♂"  and Redis:get(TheRMAD..'TheRMAD:Status:repleall'..msg.chat_id) then
-return merolua.sendText(msg.chat_id,msg.id,"وين رايح ؟ اكعد خلينا متونسين")
-end
-if text== "البوت واكف" and Redis:get(TheRMAD..'TheRMAD:Status:repleall'..msg.chat_id) then
-return merolua.sendText(msg.chat_id,msg.id,"ليش تجذب عود ؟")
-end
-if text== "ضايج"  and Redis:get(TheRMAD..'TheRMAD:Status:repleall'..msg.chat_id) then
-return merolua.sendText(msg.chat_id,msg.id,"ليش ضايج شبيك ؟")
-end
-if text== "ضايجه"  and Redis:get(TheRMAD..'TheRMAD:Status:repleall'..msg.chat_id) then
-return merolua.sendText(msg.chat_id,msg.id,"منو مضوجج كوليلي خل اسحله ؟")
-end
-if text== "😳"  or text== "😳😳"  or text== "😳😳😳" and Redis:get(TheRMAD..'TheRMAD:Status:repleall'..msg.chat_id) then
-return merolua.sendText(msg.chat_id,msg.id,"هاي شبيك يمعووود 😳")
-end
-if text== "صدك"  and Redis:get(TheRMAD..'TheRMAD:Status:repleall'..msg.chat_id) then
-return merolua.sendText(msg.chat_id,msg.id,"شايفني مجذب قبل ؟؟")
-end
-if text== "تخليني"  and Redis:get(TheRMAD..'TheRMAD:Status:repleall'..msg.chat_id) then
-return merolua.sendText(msg.chat_id,msg.id,"اخليك بزاويه 90 درجه وانته تعرف الباقي 😂")
-end
-if text== "فديتك"  or text== "فديتنك"  and Redis:get(TheRMAD..'TheRMAD:Status:repleall'..msg.chat_id) then
-return  merolua.sendText(msg.chat_id,msg.id,"فداكـ/چ ثولان العالـم😍😂" )
-end
-if text== "مساعدة"  and Redis:get(TheRMAD..'TheRMAD:Status:repleall'..msg.chat_id) then
-return merolua.sendText(msg.chat_id,msg.id,"لعرض قائمة المساعدة اكتب الاوامر")
-end
-if text== "زاحف"  and Redis:get(TheRMAD..'TheRMAD:Status:repleall'..msg.chat_id) then
-return merolua.sendText(msg.chat_id,msg.id,"زاحف ع خالتك الشكره 🌝")
-end
-if text== "حلو"  and Redis:get(TheRMAD..'TheRMAD:Status:repleall'..msg.chat_id) then
-return merolua.sendText(msg.chat_id,msg.id,"ٱنۨــہت ٱلٱحۡلى 🌚❤️،")
-end
-if text== "عاش"  and Redis:get(TheRMAD..'TheRMAD:Status:repleall'..msg.chat_id) then
-return merolua.sendText(msg.chat_id,msg.id,"وانت العايش 💕")
-end
-if text== "ورده"  or text== "وردة" and Redis:get(TheRMAD..'TheRMAD:Status:repleall'..msg.chat_id) then
-return merolua.sendText(msg.chat_id,msg.id,"انت عطرها 💕")
-end
-if text== "شسمك"  and Redis:get(TheRMAD..'TheRMAD:Status:repleall'..msg.chat_id) then
-return merolua.sendText(msg.chat_id,msg.id,"⌔︙أسمي ["..Bot_Name.."]\n⌔︙آختصـآصـي حمـآيهہ‌‏ آلمـجمـوعآت\n⌔︙مـن آلسـبآم وآلتوجيهہ‌‏ وآلتگرآر وآلخ...\n⌔︙ضيفني لكروبك ورفعني مشرف بلكروب وارسل تفعيل داخل الكروب")
-end
-if text== "فديت"  or text=="فطيت" and Redis:get(TheRMAD..'TheRMAD:Status:repleall'..msg.chat_id) then
-return merolua.sendText(msg.chat_id,msg.id,"فداك الكون وماي العيون 😘💕")
-end
-if text== "زاحفه"  or text== "زاحفة" and Redis:get(TheRMAD..'TheRMAD:Status:repleall'..msg.chat_id) then
-return  merolua.sendText(msg.chat_id,msg.id,"لو زاحفتلك جان ماكلت زاحفه 😒")
-end
-if text== "حبيبي"  or text=="حبي" and Redis:get(TheRMAD..'TheRMAD:Status:repleall'..msg.chat_id) then
-return  merolua.sendText(msg.chat_id,msg.id,"ها عمري 💕")
-end
-if text== "حبيبتي" and Redis:get(TheRMAD..'TheRMAD:Status:repleall'..msg.chat_id) then
-return merolua.sendText(msg.chat_id,msg.id,"حبيبتك مشغوله وي غيرك 😰")
-end
-if text== "حياتي" and Redis:get(TheRMAD..'TheRMAD:Status:repleall'..msg.chat_id) then
-return merolua.sendText(msg.chat_id,msg.id,"ها عمري 💕")
-end
-if text== "عمري" and Redis:get(TheRMAD..'TheRMAD:Status:repleall'..msg.chat_id) then
-return merolua.sendText(msg.chat_id,msg.id,"فديت عمرك 💕")
-end
-if text== "اسكت" and Redis:get(TheRMAD..'TheRMAD:Status:repleall'..msg.chat_id) then
-return merolua.sendText(msg.chat_id,msg.id,"ليش اسكت ؟")
-end
-if text== "بتحبني" and Redis:get(TheRMAD..'TheRMAD:Status:repleall'..msg.chat_id) then
-return merolua.sendText(msg.chat_id,msg.id,"اعشقك اني بس انت متصدك 😊💕")
-end
-if text== "المعزوفه"  or text=="المعزوفة"  or text=="معزوفه" and Redis:get(TheRMAD..'TheRMAD:Status:repleall'..msg.chat_id) then 
-return merolua.sendText(msg.chat_id,msg.id,"والله ماعرف اغني")
-end
-if text== "موجود" and Redis:get(TheRMAD..'TheRMAD:Status:repleall'..msg.chat_id) then
-return merolua.sendText(msg.chat_id,msg.id,"اي حبي كول ؟")
-end
-if text== "اكلك" and Redis:get(TheRMAD..'TheRMAD:Status:repleall'..msg.chat_id) then
-return merolua.sendText(msg.chat_id,msg.id,".كول حياتي")
-end
-if text== "فدوه"  or text=="فدوة"  or text=="فطوه"  or text=="فطوة" and Redis:get(TheRMAD..'TheRMAD:Status:repleall'..msg.chat_id) then
-return merolua.sendText(msg.chat_id,msg.id,"لطولك وجمالك 💕")
-end
-if text== "دي"  or text== "ديي" and Redis:get(TheRMAD..'TheRMAD:Status:repleall'..msg.chat_id) then
-return merolua.sendText(msg.chat_id,msg.id,"امشيك بيها")
-end
-if text== "اشكرك" and Redis:get(TheRMAD..'TheRMAD:Status:repleall'..msg.chat_id) then
-return merolua.sendText(msg.chat_id,msg.id,"بخدمتك/ج حبي ❤")
-end
-if text== "😊"  or text== "😊😊"  and Redis:get(TheRMAD..'TheRMAD:Status:repleall'..msg.chat_id) then
-return merolua.sendText(msg.chat_id,msg.id,"فدوه لخدودك 💕")
-end
-if text== "😑"  or text==  "😑😑"  or text==  "😑😑😑" and Redis:get(TheRMAD..'TheRMAD:Status:repleall'..msg.chat_id) then
-return merolua.sendText(msg.chat_id,msg.id,"وجه تنكه")
-end
-if text== "اطردني"  and Redis:get(TheRMAD..'TheRMAD:Status:repleall'..msg.chat_id) then
-return merolua.sendText(msg.chat_id,msg.id,"واني شعليه ؟")
-end
-if text== "شسمج"  and Redis:get(TheRMAD..'TheRMAD:Status:repleall'..msg.chat_id) then
-return merolua.sendText(msg.chat_id,msg.id,"انت متستحي تسال الرايحه والجايه ع اسمائهن ؟")
-end
-if text== "اني"  and Redis:get(TheRMAD..'TheRMAD:Status:repleall'..msg.chat_id) then
-return merolua.sendText(msg.chat_id,msg.id,"انت منو ؟")
-end
-if text== "نورت"  and Redis:get(TheRMAD..'TheRMAD:Status:repleall'..msg.chat_id) then
-return merolua.sendText(msg.chat_id,msg.id,"بعد روحي احمدددد قاااسم")
-end
-if text== "نورتي"  and Redis:get(TheRMAD..'TheRMAD:Status:repleall'..msg.chat_id) then 
-return merolua.sendText(msg.chat_id,msg.id,"اويي شككرااا")
-end
-if text== "صباح الخير"  or text== "صباحو"  or text== "صباح الورد"  and Redis:get(TheRMAD..'TheRMAD:Status:repleall'..msg.chat_id) then
-return merolua.sendText(msg.chat_id,msg.id,"صباح العسل يعسل")
-end
-if text== "مساء الخير"  or text== "مساو"  or text== "مساء الورد"  and Redis:get(TheRMAD..'TheRMAD:Status:repleall'..msg.chat_id) then
-return merolua.sendText(msg.chat_id,msg.id,"مساء الفل والياسمين")
-end
-if text== "منو ضافني"  and Redis:get(TheRMAD..'TheRMAD:Status:repleall'..msg.chat_id) then
-return merolua.sendText(msg.chat_id,msg.id,"والله مادري اسال غيري")
-end
-if text== "منو ضافني هنا"  and Redis:get(TheRMAD..'TheRMAD:Status:repleall'..msg.chat_id) then
-return merolua.sendText(msg.chat_id,msg.id,"بالعكس كول الحمدلله لان ضافوك باحسن كروب بالعالم")
-end
-if text== "وينكم"  and Redis:get(TheRMAD..'TheRMAD:Status:repleall'..msg.chat_id) then
-return merolua.sendText(msg.chat_id,msg.id,"والله ياحبي كلها طامسه هههع")
-end
-if text== "محح"  or text== "ممح"  and Redis:get(TheRMAD..'TheRMAD:Status:repleall'..msg.chat_id) then
-return merolua.sendText(msg.chat_id,msg.id,"عسلايه 🤤")
-end
-if text== "🤔"  or text== "🤔🤔"  and Redis:get(TheRMAD..'TheRMAD:Status:repleall'..msg.chat_id) then
-return merolua.sendText(msg.chat_id,msg.id,"شبيك بشنو تفكر ؟")
-end
-if text== "💃"  or text== "💃💃"  and Redis:get(TheRMAD..'TheRMAD:Status:repleall'..msg.chat_id) then
-return merolua.sendText(msg.chat_id,msg.id,"شد شد يمين يمين يسار يسار فوك فوك فوك لحم لحممم")
-end
-if text== "😂"  or text== "😂😂"  or text== "😹" and Redis:get(TheRMAD..'TheRMAD:Status:repleall'..msg.chat_id) then
-return merolua.sendText(msg.chat_id,msg.id,"دايمه حب 💕")
-end
-if text== "😉"  or text== "😉😉"  and Redis:get(TheRMAD..'TheRMAD:Status:repleall'..msg.chat_id) then
-return merolua.sendText(msg.chat_id,msg.id,"عفيه تغامزو عفيه")
-end
-if text== "هلا"  or text== "هلاو"  and Redis:get(TheRMAD..'TheRMAD:Status:repleall'..msg.chat_id) then
-return merolua.sendText(msg.chat_id,msg.id,"يااهلا وسههلااا")
-end
-if text== "تعال خاص"  or text== "تعالي خاص"  and Redis:get(TheRMAD..'TheRMAD:Status:repleall'..msg.chat_id) then
-return merolua.sendText(msg.chat_id,msg.id,"ٰهههاااااا شعدكم بالخاااصصص")
-end
-if text== "🦉"  or text== "🦉🦉"  and Redis:get(TheRMAD..'TheRMAD:Status:repleall'..msg.chat_id) then
-return merolua.sendText(msg.chat_id,msg.id,"ٰهلأ بہومہه 😻🙈")
-end
-if text== "الابراج"  or text== "ابراج"  and Redis:get(TheRMAD..'TheRMAD:Status:repleall'..msg.chat_id) then
-return merolua.sendText(msg.chat_id,msg.id,"ٰ⌔︙يرجى كتابة اسم برجك !")
-end
-if text== "الابراج"  or text== "ابراج"  and Redis:get(TheRMAD..'TheRMAD:Status:repleall'..msg.chat_id) then
-return merolua.sendText(msg.chat_id,msg.id,"ٰ⌔︙يرجى كتابة اسم برجك !\n⌔︙مثال : برج الحوت")
-end
-if text== "همسه"  or text== "همسة"  and Redis:get(TheRMAD..'TheRMAD:Status:repleall'..msg.chat_id) then
-return merolua.sendText(msg.chat_id,msg.id,"⌔︙هلا بك عزيزي\n⌔︙ضع معرف البوت  في الرساله ثم فراغ ثم تكتب رسالتك ثم معرف الشخص ثم معرف الشخص بعدها تضغط هذه همسه سرية الى...")
 end
 
 end
 
 
 end
-return {TheRMAD = reply}
+return {Dragon = reply}
