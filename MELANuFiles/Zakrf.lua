@@ -1,24 +1,24 @@
 function reply(msg)
 text = nil
 if msg and msg.content and msg.content.text then
-xname =  (Redis:get(TheRMAD.."Name:Bot") or "الفخم") 
+xname =  (Redis:get(Melano.."Name:Bot") or "الفخم") 
 text = msg.content.text.text
 if text:match("^"..xname.." (.*)$") then
 text = text:match("^"..xname.." (.*)$")
 end
 end
-if tonumber(msg.sender_id.user_id) == tonumber(TheRMAD) then
+if tonumber(msg.sender_id.user_id) == tonumber(Melano) then
 return false
 end
 msg_chat_id = msg.chat_id
 msg_id = msg.id
 if text then
-local neww = Redis:get(TheRMAD.."All:Get:Reides:Commands:Group"..text) or Redis:get(TheRMAD.."Get:Reides:Commands:Group"..msg_chat_id..":"..text)
+local neww = Redis:get(Melano.."All:Get:Reides:Commands:Group"..text) or Redis:get(Melano.."Get:Reides:Commands:Group"..msg_chat_id..":"..text)
 if neww then
 text = neww or text
 end
 end
-if text == "زخرفه" and not Redis:get(TheRMAD..'zhrfa'..msg.chat_id)  then
+if text == "زخرفه" and not Redis:get(Melano..'zhrfa'..msg.chat_id)  then
 local reply_markup = merolua.replyMarkup{
 type = 'inline',
 data = {
@@ -32,12 +32,12 @@ end
 
 ------------------------------
 
-if Redis:get(TheRMAD..":ZhrfNow:ar"..msg.sender_id.user_id) then
-Redis:del(TheRMAD..":ZhrfNow:ar"..msg.sender_id.user_id)
+if Redis:get(Melano..":ZhrfNow:ar"..msg.sender_id.user_id) then
+Redis:del(Melano..":ZhrfNow:ar"..msg.sender_id.user_id)
 if string.len(text) > 300 then
-return merolua.sendText(msg_chat_id,msg_id,"•  لا يمكنك زخرفه اكثر من 20 حرف \n•  ارسل امر زخرفه وحاول مجددا بحروف اقل","md",true)      
+return merolua.sendText(msg.chat_id,msg.id,"•  لا يمكنك زخرفه اكثر من 20 حرف \n•  ارسل امر زخرفه وحاول مجددا بحروف اقل","md",true)      
 elseif text:match("\n") then
-return merolua.sendText(msg_chat_id,msg_id,"•  لا يمكن زخرفه نص يحتوي على اكثر من سطر .","md",true)  
+return merolua.sendText(msg.chat_id,msg.id,"•  لا يمكن زخرفه نص يحتوي على اكثر من سطر .","md",true)  
 end
 local Zh_Ar13 = text:gsub('ض', 'ضِٰــ' ) Zh_Ar13 = Zh_Ar13:gsub('ص', 'صِٰــ' ) Zh_Ar13 = Zh_Ar13:gsub('ث', 'ثِٰــ' ) Zh_Ar13 = Zh_Ar13:gsub('ق', 'قِٰــ' ) Zh_Ar13 = Zh_Ar13:gsub('ف', 'فِٰ͒ــ' ) Zh_Ar13 = Zh_Ar13:gsub('غ', 'غِٰــ' ) Zh_Ar13 = Zh_Ar13:gsub('ع', 'عِٰــ' ) Zh_Ar13 = Zh_Ar13:gsub('خ', 'خِٰ̐ــ' ) Zh_Ar13 = Zh_Ar13:gsub('ح', 'حِٰــ' ) Zh_Ar13 = Zh_Ar13:gsub('ج', 'جِٰــ' ) Zh_Ar13 = Zh_Ar13:gsub('ش', 'شِٰــ' ) Zh_Ar13 = Zh_Ar13:gsub('س', 'سِٰــ' ) Zh_Ar13 = Zh_Ar13:gsub('ي', 'يِٰــ' ) Zh_Ar13 = Zh_Ar13:gsub('ب', 'بِٰــ' ) Zh_Ar13 = Zh_Ar13:gsub('ل', 'لِٰــ' ) Zh_Ar13 = Zh_Ar13:gsub('ا', 'آ' ) Zh_Ar13 = Zh_Ar13:gsub('ت', 'تِٰــ' ) Zh_Ar13 = Zh_Ar13:gsub('ن', 'نِٰــ' ) Zh_Ar13 = Zh_Ar13:gsub('م', 'مِٰــ' ) Zh_Ar13 = Zh_Ar13:gsub('ك', 'ڪِٰــ' ) Zh_Ar13 = Zh_Ar13:gsub('ط', 'طِٰــ' ) Zh_Ar13 = Zh_Ar13:gsub('ظ', 'ظِٰــ' ) Zh_Ar13 = Zh_Ar13:gsub('ء', 'ء' ) Zh_Ar13 = Zh_Ar13:gsub('ؤ', 'ؤ' ) Zh_Ar13 = Zh_Ar13:gsub('ر', 'ر' ) Zh_Ar13 = Zh_Ar13:gsub('ى', 'ى' ) Zh_Ar13 = Zh_Ar13:gsub('ز', 'ز' ) Zh_Ar13 = Zh_Ar13:gsub('و', 'ﯛ̲୭' ) Zh_Ar13 = Zh_Ar13:gsub("ه", "໋۠هہؚ")
 local Zh_Ar12 = text:gsub('ا','آ' ) Zh_Ar12 = Zh_Ar12:gsub("ب","بّہ" ) Zh_Ar12 = Zh_Ar12:gsub("ت","تَہَٰ" ) Zh_Ar12 = Zh_Ar12:gsub("ح","حہٰٰ" ) Zh_Ar12 = Zh_Ar12:gsub("ج","جْۧ" ) Zh_Ar12 = Zh_Ar12:gsub("خ","خٰ̐ہ" ) Zh_Ar12 = Zh_Ar12:gsub("د","د" ) Zh_Ar12 = Zh_Ar12:gsub("ذ","ذِ" ) Zh_Ar12 = Zh_Ar12:gsub("ر","ر" ) Zh_Ar12 = Zh_Ar12:gsub("ز","زَ" ) Zh_Ar12 = Zh_Ar12:gsub("س","سٰٰٓ" ) Zh_Ar12 = Zh_Ar12:gsub("ش","شِٰہٰٰ" ) Zh_Ar12 = Zh_Ar12:gsub("ص","صۛہٰٰ" ) Zh_Ar12 = Zh_Ar12:gsub("ض","ضۜہٰٰ" ) Zh_Ar12 = Zh_Ar12:gsub("ظ","ظۗہٰٰ" ) Zh_Ar12 = Zh_Ar12:gsub("غ","غہٰٰ" ) Zh_Ar12 = Zh_Ar12:gsub("ف","ف͒ہٰٰ" ) Zh_Ar12 = Zh_Ar12:gsub("ق","قྀ̲ہٰٰٰ" ) Zh_Ar12 = Zh_Ar12:gsub("ك","ڪٰྀہٰٰٖ" ) Zh_Ar12 = Zh_Ar12:gsub("ل","ل" ) Zh_Ar12 = Zh_Ar12:gsub("ن","نَِٰہٰ" ) Zh_Ar12 = Zh_Ar12:gsub("ه","ھہ" ) Zh_Ar12 = Zh_Ar12:gsub("و","وِ" ) Zh_Ar12 = Zh_Ar12:gsub("طۨہٰٰ","ط" ) Zh_Ar12 = Zh_Ar12:gsub("ث","ثہٰٰ" ) Zh_Ar12 = Zh_Ar12:gsub("ي","يِٰہ" ) Zh_Ar12 = Zh_Ar12:gsub("ع","؏ۤـہٰٰ")
@@ -66,15 +66,15 @@ Text_Zhrfa = '1 -`'..Zh_Ar1..'`'..
 '\n12 -`'..Zh_Ar12..'`'..
 '\n13 -`'..Zh_Ar13..'`'
 Text_Zhrfa = Text_Zhrfa.."\n•  اضغط ع الاسم ليتم النسخ \n✓"
-return merolua.sendText(msg_chat_id,msg_id,Text_Zhrfa,"md",true)  
+return merolua.sendText(msg.chat_id,msg.id,Text_Zhrfa,"md",true)  
 end
-if Redis:get(TheRMAD..":Zhrfinlin:en"..msg.sender_id.user_id) then
-Redis:del(TheRMAD..":Zhrfinlin:en"..msg.sender_id.user_id)
-Redis:set(TheRMAD..msg_chat_id..msg.sender_id.user_id.."zkrf:text", text)
+if Redis:get(Melano..":Zhrfinlin:en"..msg.sender_id.user_id) then
+Redis:del(Melano..":Zhrfinlin:en"..msg.sender_id.user_id)
+Redis:set(Melano..msg_chat_id..msg.sender_id.user_id.."zkrf:text", text)
 if string.len(text) > 300 then
-return merolua.sendText(msg_chat_id,msg_id,"•  لا يمكنك زخرفه اكثر من 20 حرف \n•  ارسل امر زخرفه وحاول مجددا بحروف اقل","md",true)  
+return merolua.sendText(msg.chat_id,msg.id,"•  لا يمكنك زخرفه اكثر من 20 حرف \n•  ارسل امر زخرفه وحاول مجددا بحروف اقل","md",true)  
 elseif text:match("\n") then
-return merolua.sendText(msg_chat_id,msg_id,"•  لا يمكن زخرفه نص يحتوي على اكثر من سطر .","md",true)  
+return merolua.sendText(msg.chat_id,msg.id,"•  لا يمكن زخرفه نص يحتوي على اكثر من سطر .","md",true)  
 end
 text = text:gsub('A','a') text = text:gsub('S','s') text = text:gsub('D','d') text = text:gsub('F','f') text = text:gsub('G','g') text = text:gsub('H','h') text = text:gsub('J','j') text = text:gsub('K','k') text = text:gsub('L','l') text = text:gsub('Q','q') text = text:gsub('W','w') text = text:gsub('E','e' ) text = text:gsub('R','r' ) text = text:gsub('T','t' ) text = text:gsub('Y','y' ) text = text:gsub('U','u' ) text = text:gsub('I','i' ) text = text:gsub('O','o' ) text = text:gsub('P','p' ) text = text:gsub('Z','z' ) text = text:gsub('X','x' ) text = text:gsub('C','c' ) text = text:gsub('V','v' ) text = text:gsub('B','b' ) text = text:gsub('N','n' ) text = text:gsub('M','m')
 local Q_bna1 = text:gsub('a','ᥲ️' ) Q_bna1 = Q_bna1:gsub('b','Ⴆ' ) Q_bna1 = Q_bna1:gsub('c','ᥴ' ) Q_bna1 = Q_bna1:gsub('d','ძ' ) Q_bna1 = Q_bna1:gsub('e','ᥱ' ) Q_bna1 = Q_bna1:gsub('f','f' ) Q_bna1 = Q_bna1:gsub('g','ᧁ' ) Q_bna1 = Q_bna1:gsub('h','Ꮒ' ) Q_bna1 = Q_bna1:gsub('i','Ꭵ' ) Q_bna1 = Q_bna1:gsub('j','᧒' ) Q_bna1 = Q_bna1:gsub('k','𝚔' ) Q_bna1 = Q_bna1:gsub('l','ᗩ' ) Q_bna1 = Q_bna1:gsub('m',' ꧑' ) Q_bna1 = Q_bna1:gsub('n','ꪀ' ) Q_bna1 = Q_bna1:gsub('o','ρ' ) Q_bna1 = Q_bna1:gsub('p','ρ' ) Q_bna1 = Q_bna1:gsub('q','ǫ' ) Q_bna1 = Q_bna1:gsub('r','ℛ' ) Q_bna1 = Q_bna1:gsub('s','᥉' ) Q_bna1 = Q_bna1:gsub('t','ƚ' ) Q_bna1 = Q_bna1:gsub('u','ᥙ' ) Q_bna1 = Q_bna1:gsub('v','᥎' ) Q_bna1 = Q_bna1:gsub('w','ꪝ' ) Q_bna1 = Q_bna1:gsub('x','᥊' ) Q_bna1 = Q_bna1:gsub('y','ꪗ' ) Q_bna1 = Q_bna1:gsub('z','ᤁ')
@@ -158,12 +158,12 @@ data = {
 return merolua.sendText(msg_chat_id, msg_id,Text_Zhrfa, 'md', false, false, false, false, reply_markup)
 end
 
-if Redis:get(TheRMAD..":ZhrfNow:en"..msg.sender_id.user_id) then
-Redis:del(TheRMAD..":ZhrfNow:en"..msg.sender_id.user_id)
+if Redis:get(Melano..":ZhrfNow:en"..msg.sender_id.user_id) then
+Redis:del(Melano..":ZhrfNow:en"..msg.sender_id.user_id)
 if string.len(text) > 300 then
-return merolua.sendText(msg_chat_id,msg_id,"•  لا يمكنك زخرفه اكثر من 20 حرف \n•  ارسل امر زخرفه وحاول مجددا بحروف اقل","md",true)  
+return merolua.sendText(msg.chat_id,msg.id,"•  لا يمكنك زخرفه اكثر من 20 حرف \n•  ارسل امر زخرفه وحاول مجددا بحروف اقل","md",true)  
 elseif text:match("\n") then
-return merolua.sendText(msg_chat_id,msg_id,"•  لا يمكن زخرفه نص يحتوي على اكثر من سطر .","md",true)  
+return merolua.sendText(msg.chat_id,msg.id,"•  لا يمكن زخرفه نص يحتوي على اكثر من سطر .","md",true)  
 end
 text = text:gsub('A','a') text = text:gsub('S','s') text = text:gsub('D','d') text = text:gsub('F','f') text = text:gsub('G','g') text = text:gsub('H','h') text = text:gsub('J','j') text = text:gsub('K','k') text = text:gsub('L','l') text = text:gsub('Q','q') text = text:gsub('W','w') text = text:gsub('E','e' ) text = text:gsub('R','r' ) text = text:gsub('T','t' ) text = text:gsub('Y','y' ) text = text:gsub('U','u' ) text = text:gsub('I','i' ) text = text:gsub('O','o' ) text = text:gsub('P','p' ) text = text:gsub('Z','z' ) text = text:gsub('X','x' ) text = text:gsub('C','c' ) text = text:gsub('V','v' ) text = text:gsub('B','b' ) text = text:gsub('N','n' ) text = text:gsub('M','m')
 local Q_bna1 = text:gsub('a','ᥲ️' ) Q_bna1 = Q_bna1:gsub('b','Ⴆ' ) Q_bna1 = Q_bna1:gsub('c','ᥴ' ) Q_bna1 = Q_bna1:gsub('d','ძ' ) Q_bna1 = Q_bna1:gsub('e','ᥱ' ) Q_bna1 = Q_bna1:gsub('f','f' ) Q_bna1 = Q_bna1:gsub('g','ᧁ' ) Q_bna1 = Q_bna1:gsub('h','Ꮒ' ) Q_bna1 = Q_bna1:gsub('i','Ꭵ' ) Q_bna1 = Q_bna1:gsub('j','᧒' ) Q_bna1 = Q_bna1:gsub('k','𝚔' ) Q_bna1 = Q_bna1:gsub('l','ᗩ' ) Q_bna1 = Q_bna1:gsub('m',' ꧑' ) Q_bna1 = Q_bna1:gsub('n','ꪀ' ) Q_bna1 = Q_bna1:gsub('o','ρ' ) Q_bna1 = Q_bna1:gsub('p','ρ' ) Q_bna1 = Q_bna1:gsub('q','ǫ' ) Q_bna1 = Q_bna1:gsub('r','ℛ' ) Q_bna1 = Q_bna1:gsub('s','᥉' ) Q_bna1 = Q_bna1:gsub('t','ƚ' ) Q_bna1 = Q_bna1:gsub('u','ᥙ' ) Q_bna1 = Q_bna1:gsub('v','᥎' ) Q_bna1 = Q_bna1:gsub('w','ꪝ' ) Q_bna1 = Q_bna1:gsub('x','᥊' ) Q_bna1 = Q_bna1:gsub('y','ꪗ' ) Q_bna1 = Q_bna1:gsub('z','ᤁ')
@@ -202,7 +202,7 @@ Text_Zhrfa = '1 - `'..Q_bna1..'`'..'\n2 - `'..Q_bna2..'`'..
 '\n17 -  `'..Q_bna17..'`'..
 '\n18 - `'..Q_bna18..'`'
 Text_Zhrfa = Text_Zhrfa.."\n•  اضغط ع الاسم ليتم النسخ \n✓"
-return merolua.sendText(msg_chat_id,msg_id,Text_Zhrfa,"md",true)  
+return merolua.sendText(msg.chat_id,msg.id,Text_Zhrfa,"md",true)  
 end
 end
-return {TheRMAD = reply}
+return {Melano = reply}
