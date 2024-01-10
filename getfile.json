@@ -12,14 +12,17 @@
   
 "BankBot.lua":"[ملف لعبه البنك](https://t.me/QQOQQD)",
   
-"convert.lua":"[ملف تحويل الصيغ](https://t.me/QQOQQD)",
-    
 "GamesBot.lua":"[ملف الالعاب البوت](https://t.me/QQOQQD)",
   
 "TsliaBot.lua":"[ملف التحشيش](https://t.me/QQOQQD)",
   
 "AutoFile.lua":"[ملف النسخ الاحتياطيه التلقائيه](https://t.me/QQOQQD)",
+
+"ChangeUser.lua":"[ملف تنبيه المعرفات](https://t.me/QQOQQD)",
   
+"change_name.lua":"[ملف تنبيه الاسماء](https://t.me/QQOQQD)",
+
+"AddedMe.lua":"[ملف منو ضافني](https://t.me/QQOQQD)",
 }
   
 }
